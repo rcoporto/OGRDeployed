@@ -1,0 +1,104 @@
+   .familiesContainer {
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .donateSection, .scheduleSection {
+    margin-bottom: 40px;
+  }
+  
+  .qrCode {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .filterAddContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .filters select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .eventTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .eventTable th, .eventTable td {
+    padding: 12px;
+    border: 1px solid #ddd;
+  }
+  
+  .eventTable tr:hover {
+    background-color: gray;
+    cursor: pointer;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .overlayContent {
+    background: gray;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .addBtn, .submitBtn, .editBtn, .deleteBtn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .addBtn {
+    background-color: green;
+    color: white;
+    float: right; 
+  }
+  
+  .submitBtn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .editBtn {
+    background-color: orange;
+    color: white;
+  }
+  
+  .deleteBtn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
