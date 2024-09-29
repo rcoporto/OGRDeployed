@@ -1,0 +1,215 @@
+/* Layout and basic structure */
+.container {
+    display: flex;
+  }
+  
+  .content {
+    flex: 1;
+    margin-left: 380px;   /* bandaid solution for current format of sidebar*/
+    padding: 20px;
+    background-color: #f8faff; /* Adjusted light background color */
+  }
+  
+  /* Header styling */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    color: #2e3a59; /* Dark blue tone */
+    font-weight: bold;
+  }
+  
+  /* Filter section */
+  .filter {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .filter select,
+  .filter input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Stats section */
+  .stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .stats div {
+    padding: 8px 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #e6f3ff; /* Blue tint */
+    color: #006699;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .stats div:hover {
+    background-color: #d0ebff;
+  }
+  
+  /* Table container */
+  .tableContainer {
+    overflow-y: auto;
+    max-height: 60vh;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  /* Table styling */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    color: #2e3a59; /* Consistent dark blue text */
+  }
+  
+  .table th {
+    background-color: #f1f5ff;
+    font-weight: bold;
+    border-bottom: 2px solid #d1d9e6;
+  }
+  
+  .table tr {
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .table tr:hover {
+    background-color: #eef3fb; /* Light blue hover */
+  }
+  
+  .table td {
+    border-bottom: 1px solid #eaeff5;
+  }
+  
+  /* Status badge styling */
+  .table td .status-open {
+    color: #28a745; /* Green for open status */
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .table td .status-closed {
+    color: #dc3545; /* Red for closed status */
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Action menu */
+  .actionMenu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .actionMenu button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .actionMenuContent {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 100;
+  }
+  
+  .actionMenu:hover .actionMenuContent {
+    display: block;
+  }
+  
+  .actionMenuContent button {
+    display: block;
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .actionMenuContent button:hover {
+    background-color: #f1f1f1; /* Gray hover effect */
+  }
+  
+  /* Modal styling */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+  }
+  
+  .modalContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .modalContent h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .modalContent p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .modalContent button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #006699;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .modalContent button:hover {
+    background-color: #005580;
+  }
+  

@@ -1,12 +1,11 @@
 "use client"
 
-// need ng email
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 
 const Registry = () => {
   const [formData, setFormData] = useState({
+    email: '',
     firstName: '',
     middleName: '',
     lastName: '',
@@ -120,6 +119,15 @@ const Registry = () => {
           name="registryNumber" 
           value={formData.registryNumber} 
           readOnly 
+        />
+        <br />
+
+        <label>Email</label>
+        <input 
+          type="text" 
+          name="email" 
+          value={formData.email} 
+          onChange={handleChange} 
         />
         <br />
 
