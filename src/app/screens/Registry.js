@@ -3,6 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 
+//for firebase
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../../firebase/firebase'; // Adjust this path as needed
+
 const Registry = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -96,11 +100,28 @@ const Registry = () => {
     }
   }, [formData.geneticTestingDate]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent page refresh
-    alert('Form submitted!'); // Placeholder alert
-    // You can do anything with formData here, like sending it to an API
-    console.log('Submitted data:', formData);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault(); // Prevent page refresh
+  //   alert('Form submitted!'); // Placeholder alert
+  //   // You can do anything with formData here, like sending it to an API
+  //   console.log('Submitted data:', formData);
+  // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      // Reference to the 'registries' collection
+      const registryRef = collection(db, 'registries');
+  
+      // Add a new document with formData
+      await addDoc(registryRef, formData);
+  
+      alert('Form submitted successfully!');
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      alert('There was an error submitting the form.');
+    }
   };
 
   return (
