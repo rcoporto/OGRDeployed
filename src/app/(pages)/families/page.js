@@ -5,7 +5,7 @@ function page() {
   return (
     <div>
       {/* Pass isAdmin={true} to simulate admin */}
-      <Families isAdmin={false} />
+      <Families isAdmin={true} />
     </div>
   );
 }
