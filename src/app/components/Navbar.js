@@ -12,7 +12,7 @@ const Navbar = () => {
     { href: '/families', key: 'families', label: 'Families' },
     { href: '/registry', key: 'registry', label: 'Registry' },
     { href: '/research', key: 'research', label: 'Research' },
-    { href: '/about-us', key: 'about_us', label: 'About Us' },
+    { href: '/inquire-now', key: 'inquire_now', label: 'Inquire Now' },
     { href: '/new-user', key: 'register_now', label: 'Register Now' },
     { href: '/login', key: 'login', label: 'Login' },
 ];

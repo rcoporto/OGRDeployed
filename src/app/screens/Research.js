@@ -114,9 +114,9 @@ function Research() {
 
   return (
 <>
+<Navbar />
 <div className={styles.container}>
   <title>Research</title>
-  <Navbar />
   <h1 className={styles.title}>Ocular Genetic Registry</h1>
 
   {/* Main Content Area */}

@@ -1,9 +1,9 @@
-import AboutUs from '@/app/screens/AboutUs'
+import InquireNow from '@/app/screens/InquireNow'
 import React from 'react'
 
 function page() {
   return (
-    <div><AboutUs/></div>
+    <div><InquireNow/></div>
   )
 }
 
