@@ -197,6 +197,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import styles from './Families.module.css';
+import FamiliesSection from '../components/FamiliesSection';
 import { db } from '../../../firebase/firebase'; // Adjust this path as needed
 import { collection, getDocs } from 'firebase/firestore';
 
@@ -284,6 +285,9 @@ function Families({ isAdmin }) {
         <title>Families</title>
 
         {/* How to donate section */}
+
+        {/* <FamiliesSection /> */}
+
         <section className={styles.donateSection}>
           <h2>How to Donate</h2>
           <p>You can support us by donating to the following bank account:</p>
