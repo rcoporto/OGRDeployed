@@ -1,6 +1,16 @@
-   .familiesContainer {
+   /* .familiesContainer {
     padding: 20px;
     font-family: 'Poppins', sans-serif;
+  } */
+
+  .page {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #F8F8FF;
+    background-position: top;
+    background-size: contain;
   }
   
   .donateSection, .scheduleSection {
@@ -23,6 +33,7 @@
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    color: steelblue;
   }
   
   .eventTable {

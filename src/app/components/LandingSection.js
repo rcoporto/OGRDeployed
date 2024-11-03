@@ -84,7 +84,7 @@ const LandingSection = () => {
 
                     <div>                       
                         <h1 class="mb-4 mt-8 text-3xl font-extrabold text-gray-900 md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Ocular Genetics</span></h1>
-                        <h3 class="ms-2 text-2xl font-semibold text-gray-20 mb-10">What do we do?</h3>
+                        <h3 class="ms-2 text-2xl font-semibold text-gray-30 mb-10">What do we do?</h3>
                         <p class="text-lg font-normal text-gray-70 font-lora lg:text-xl">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 

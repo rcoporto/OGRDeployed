@@ -200,6 +200,7 @@ import styles from './Families.module.css';
 import FamiliesSection from '../components/FamiliesSection';
 import { db } from '../../../firebase/firebase'; // Adjust this path as needed
 import { collection, getDocs } from 'firebase/firestore';
+import ActivitiesTable from '../components/ActivitiesTable';
 
 function Families({ isAdmin }) {
   const [events, setEvents] = useState([]);
@@ -280,15 +281,22 @@ function Families({ isAdmin }) {
 
   return (
     <>
-      <Navbar />
-      <div className={styles.familiesContainer}> 
+      <div className={styles.page}> 
         <title>Families</title>
+        <Navbar />
 
         {/* How to donate section */}
 
-        {/* <FamiliesSection /> */}
+        <FamiliesSection />
 
-        <section className={styles.donateSection}>
+        <div class="mt-32 mb-14 mx-20 z-10 text-center">                       
+                    
+          <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-bluegreen-75 md:text-5xl lg:text-6xl">Support <span class="text-bluegreen-90">Groups</span></h1>
+          <p class="text-lg font-normal font-lora text-gray-60 lg:text-xl">See schedule of upcoming activities of patients here.</p>
+
+        </div> 
+
+        {/* <section className={styles.donateSection}>
           <h2>How to Donate</h2>
           <p>You can support us by donating to the following bank account:</p>
           <p>Bank: Example Bank</p>
@@ -296,25 +304,33 @@ function Families({ isAdmin }) {
           <p>Account Number: 1234 5678 9012</p>
           <p>SWIFT Code: EXAMPBANK</p>
           <img src="/path/to/qr-code.png" alt="QR Code for Donation" className={styles.qrCode} />
-        </section>
+        </section> */}
 
         {/* Schedule of activities section */}
         <section className={styles.scheduleSection}>
-          <h2>Schedule of Activities</h2>
+          {/* <h2>Schedule of Activities</h2> */}
 
           {/* Filters for event categories */}
-          <div className={styles.filters}>
-            <label>Filter by category:</label>
-            <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}>
+          {/* <div className={styles.filters}> */}
+          <div>
+            <label class="ml-14 mr-6 text-gray-70 font-lora">Filter by category:</label>
+            <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory} class="px-4 py-2 border rounded-lg border-bluegreen-60 text-bluegreen-70">
               <option value="">All</option>
               <option value="Retinitis Pigmentosa">Retinitis Pigmentosa</option>
               <option value="Stargardt Disease">Stargardt Disease</option>
               <option value="Cone Rod Dystrophy">Cone Rod Dystrophy</option>
             </select>
             {isAdmin && (
-              <button onClick={handleAddEvent} className={styles.addBtn}>Add Event</button>
+              <button onClick={handleAddEvent} class="text-white bg-bluegreen-1 cursor-pointer focus:ring-4 focus:outline-none focus:ring-bluegreen-60 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 ml-24">
+                <svg class="w-5.5 h-5.5 text-bluegreen-75" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                </svg>
+
+                Add Event</button>
             )}
           </div>
+
+          <ActivitiesTable />
 
           {/* Event table */}
           <table className={styles.eventTable}>
@@ -401,6 +417,8 @@ function Families({ isAdmin }) {
             </div>
           )}
         </section>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#55A1B4" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
       </div>
     </>
   );
