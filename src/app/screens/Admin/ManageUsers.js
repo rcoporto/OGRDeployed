@@ -89,24 +89,24 @@ function ManageUsers() {
   };
 
   const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
+  const { value, checked } = e.target;
 
-    let newAccessType;
+     let newAccessType;
 
-    if (value === 'Admin' && checked) {
-      // If Admin is selected, deselect Research and Registry
-      newAccessType = ['Admin'];
-    } else if ((value === 'Research' || value === 'Registry') && checked) {
-      // If Research or Registry is selected, deselect Admin
-      newAccessType = formData.accessType.filter(type => type !== 'Admin');
-      newAccessType.push(value);
-    } else if (!checked) {
-      // If a checkbox is unchecked, remove it from the array
-      newAccessType = formData.accessType.filter(type => type !== value);
-    }
+     if (value === 'Admin' && checked) {
+       // If Admin is selected, deselect Research and Registry
+       newAccessType = ['Admin'];
+     } else if ((value === 'Research' || value === 'Registry') && checked) {
+       // If Research or Registry is selected, deselect Admin
+       newAccessType = formData.accessType.filter(type => type !== 'Admin');
+       newAccessType.push(value);
+     } else if (!checked) {
+       // If a checkbox is unchecked, remove it from the array
+       newAccessType = formData.accessType.filter(type => type !== value);
+     }
 
-    setFormData({ ...formData, accessType: newAccessType });
-  };
+     setFormData({ ...formData, accessType: newAccessType });
+   };
 
   const showActionMenu = (event, userId) => {
     event.preventDefault();
@@ -227,7 +227,7 @@ function ManageUsers() {
               value="Research"
               checked={formData.accessType.includes("Research")}
               onChange={handleCheckboxChange}
-              disabled={formData.accessType.includes("Admin")}  // Disable if Admin is selected
+              // disabled={formData.accessType.includes("Admin")}  // Disable if Admin is selected
             />
             Research
           </label>
@@ -237,18 +237,9 @@ function ManageUsers() {
               value="Registry"
               checked={formData.accessType.includes("Registry")}
               onChange={handleCheckboxChange}
-              disabled={formData.accessType.includes("Admin")}  // Disable if Admin is selected
+              // disabled={formData.accessType.includes("Admin")}  // Disable if Admin is selected
             />
             Registry
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              value="Admin"
-              checked={formData.accessType.includes("Admin")}
-              onChange={handleCheckboxChange}
-            />
-            Admin
           </label>
         </div>
         
