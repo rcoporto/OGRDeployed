@@ -139,7 +139,7 @@ function NewUser() {
     contact: '',
     registry: false,
     research: false,
-    identity: null, // This will hold the file input
+    identity:  '', // This will hold the file input
   });
 
   const handleSubmit = async (e) => {
@@ -157,7 +157,7 @@ function NewUser() {
         contact: formData.contact,
         registry: formData.registry,
         research: formData.research,
-        // identity: formData.identity // You may handle file uploads differently
+         identity: formData.identity // You may handle file uploads differently
       });
   
       alert('Form submitted successfully!');
@@ -176,19 +176,29 @@ function NewUser() {
       contact: '',
       registry: false,
       research: false,
-      identity: null,
+      identity: '',
     });
     setUserType('');
   };
 
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     [name]: name === 'identity' ? '' : value, // Handle file separately
+  //     [name === 'registry' || name === 'research' ? name : '']: e.target.checked // For checkbox
+  //   }));
+  // };
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
+  
     setFormData(prev => ({
       ...prev,
-      [name]: name === 'identity' ? e.target.files[0] : value, // Handle file separately
-      [name === 'registry' || name === 'research' ? name : '']: e.target.checked // For checkbox
+      [name]: type === 'checkbox' ? checked : value, // Handle checkboxes and other input types appropriately
     }));
   };
+  
 
   return (
     <div>
@@ -279,7 +289,7 @@ function NewUser() {
               />
             </div>
 
-            <div className={styles.formGroup}>
+            {/* <div className={styles.formGroup}>
               <label htmlFor="identity">Proof of Identity *</label>
               <input 
                 type="file" 
@@ -294,7 +304,21 @@ function NewUser() {
                   Upload any document that certifies you as a {userType}.
                 </small>
               )}
+            </div> */}
+
+<div className={styles.formGroup}>
+              <label htmlFor="identity">Link for Proof of Identity *</label>
+              <input 
+                type="text" 
+                id="identity" 
+                name="identity"
+                className={styles.input} 
+                value={formData.identity} 
+                onChange={handleChange} 
+                required 
+              />
             </div>
+            
 
             <button type="submit" className={styles.submitButton}>Submit</button>
           </form>
