@@ -62,12 +62,12 @@ const LandingSection = () => {
 
 
                     <div class="bg-gray-100 border border-gray-200 rounded-3xl p-8 md:p-12">
-                        <h2 class="text-pink-20 text-3xl font-extrabold mb-8">Vision</h2>
+                        <h2 class="text-pink-20 text-3xl font-extrabold mb-8">Lorem ipsum</h2>
                         <p class="text-lg font-normal text-gray-70 font-lora mb-12">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                        <h2 class="text-pink-20 text-3xl font-extrabold mb-8">Mission</h2>
+                        <h2 class="text-pink-20 text-3xl font-extrabold mb-8">Lorem ipsum</h2>
                         <p class="text-lg font-normal text-gray-70 font-lora mb-12">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>

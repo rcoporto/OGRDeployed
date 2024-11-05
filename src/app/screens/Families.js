@@ -565,8 +565,8 @@ function Families({ isAdmin }) {
               <tbody class="cursor-pointer">
                 {filteredEvents.map(event => (
                   <tr class="bg-white border-b hover:bg-gray-50 text-center" key={event.id} onClick={() => setShowDetails(showDetails === event.id ? null : event.id)}>
-                    <td>{formatDate(event.date)}</td>
-                    <td>{event.title}</td>
+                    <td class="font-lora">{formatDate(event.date)}</td>
+                    <td class="font-lora">{event.title}</td>
                     {isAdmin && (
                       <td class="px-6 py-4 text-center">
                         {/* <button onClick={(e) => { e.stopPropagation(); handleEditEvent(event); }} className={styles.editBtn}>Edit</button> */}
