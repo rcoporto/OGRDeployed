@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
+    "date-fns": "^4.1.0",
     "firebase": "^11.0.1",
     "flowbite-react": "^0.10.2",
     "next": "14.2.13",

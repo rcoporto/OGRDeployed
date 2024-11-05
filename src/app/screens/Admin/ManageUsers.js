@@ -3,18 +3,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './ManageUsers.module.css';
 import Sidebar from './Sidebar';
+import { collection, getDocs, updateDoc, doc, deleteDoc, getDoc, setDoc, } from 'firebase/firestore';
+import { db } from "../../../../firebase/firebase"; // Make sure the path is correct
+import { format } from 'date-fns'; //npm install date-fns
 
-const usersData = [
-  { id: "#12345", name: "Juan Dela Cruz", email: "jdelacruz@gmail.com", password: "password123", phone: "0991 234 5678", userType: "Admin", accessType: ["Research", "Registry"], createDate: "09/13/2024", proofOfIdentity: "professionalID.png" },
-  { id: "#12346", name: "Maria Santos", email: "mariasantos@hotmail.com", password: "password456", phone: "0912 987 6543", userType: "Doctor", accessType: ["Registry"], createDate: "08/05/2023", proofOfIdentity: "id_mariasantos.png" },
-  { id: "#12347", name: "John Reyes", email: "johnreyes@yahoo.com", password: "johnpass789", phone: "0933 765 4321", userType: "Nurse", accessType: ["Research"], createDate: "07/22/2022", proofOfIdentity: "id_johnreyes.png" },
-  { id: "#12348", name: "Luisa Martinez", email: "lmartinez@gmail.com", password: "luisaPass1", phone: "0921 345 6789", userType: "Doctor", accessType: ["Research", "Registry"], createDate: "05/17/2024", proofOfIdentity: "id_luisamartinez.png" },
-  { id: "#12349", name: "Carlos Rivera", email: "crivera@domain.com", password: "passCarlos99", phone: "0910 456 7890", userType: "Admin", accessType: ["Admin"], createDate: "06/12/2023", proofOfIdentity: "id_carlosrivera.png" },
-  { id: "#12350", name: "Jessica Lee", email: "jessica_lee@gmail.com", password: "lee1234", phone: "0911 222 3333", userType: "Nurse", accessType: ["Registry"], createDate: "11/11/2022", proofOfIdentity: "id_jessicalee.png" },
-];
+// const usersData = [
+//   { id: "#12345", name: "Juan Dela Cruz", email: "jdelacruz@gmail.com", password: "password123", contact: "0991 234 5678", userType: "Admin", accessType: ["Research", "Registry"], createDate: "09/13/2024", identity: "professionalID.png" },
+//   { id: "#12346", name: "Maria Santos", email: "mariasantos@hotmail.com", password: "password456", contact: "0912 987 6543", userType: "Doctor", accessType: ["Registry"], createDate: "08/05/2023", identity: "id_mariasantos.png" },
+//   { id: "#12347", name: "John Reyes", email: "johnreyes@yahoo.com", password: "johnpass789", contact: "0933 765 4321", userType: "Nurse", accessType: ["Research"], createDate: "07/22/2022", identity: "id_johnreyes.png" },
+//   { id: "#12348", name: "Luisa Martinez", email: "lmartinez@gmail.com", password: "luisaPass1", contact: "0921 345 6789", userType: "Doctor", accessType: ["Research", "Registry"], createDate: "05/17/2024", identity: "id_luisamartinez.png" },
+//   { id: "#12349", name: "Carlos Rivera", email: "crivera@domain.com", password: "passCarlos99", contact: "0910 456 7890", userType: "Admin", accessType: ["Admin"], createDate: "06/12/2023", identity: "id_carlosrivera.png" },
+//   { id: "#12350", name: "Jessica Lee", email: "jessica_lee@gmail.com", password: "lee1234", contact: "0911 222 3333", userType: "Nurse", accessType: ["Registry"], createDate: "11/11/2022", identity: "id_jessicalee.png" },
+// ];
 
 function ManageUsers() {
-  const [users, setUsers] = useState(usersData);
+  const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [userTypeFilter, setUserTypeFilter] = useState('');
   const [accessTypeFilter, setAccessTypeFilter] = useState('');
@@ -22,8 +25,30 @@ function ManageUsers() {
   const [actionMenuPosition, setActionMenuPosition] = useState({ top: 0, left: 0 });
   const [selectedUser, setSelectedUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({ id: '', name: '', email: '', password: '', phone: '', userType: '', accessType: [], createDate: '', proofOfIdentity: '' });
+  const [formData, setFormData] = useState({ id: '', name: '', email: '', password: '', contact: '', userType: '', registry: '', research: '',approvedAt: '', identity: '' });
+  // const [formData, setFormData] = useState({ id: '', name: '', email: '', password: '', contact: '', userType: '', accessType: [], createDate: '', identity: '' });
   const actionMenuRef = useRef(null);
+
+ // Fetch users from Firebase
+ useEffect(() => {
+  const fetchUsers = async () => {
+    const usersCollection = collection(db, "registeredUsers");
+    const usersSnapshot = await getDocs(usersCollection);
+    const usersList = usersSnapshot.docs.map(doc => {
+      const data = doc.data();
+
+      return {
+        id: doc.id,
+        ...data,
+        approvedAt: data.approvedAt 
+          ? format(new Date(data.approvedAt.seconds * 1000), 'MM/dd/yyyy') 
+          : "Pending",
+      };
+    });
+    setUsers(usersList);
+  };
+  fetchUsers();
+}, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -50,7 +75,7 @@ function ManageUsers() {
   };
 
   const handleSave = () => {
-    if (!formData.name || !formData.email || !formData.password || !formData.userType || !formData.accessType.length || !formData.proofOfIdentity) {
+    if (!formData.name || !formData.email || !formData.password || !formData.userType || !formData.accessType.length || !formData.identity) {
       alert("Please fill in all required fields.");
       return;
     }
@@ -60,16 +85,16 @@ function ManageUsers() {
       setUsers(users.map(user => user.id === formData.id ? formData : user));
     } else {
       // Add new user
-      setUsers([...users, { ...formData, id: `#${Math.floor(Math.random() * 90000) + 10000}`, createDate: new Date().toLocaleDateString() }]);
+      setUsers([...users, { ...formData, id: `#${Math.floor(Math.random() * 90000) + 10000}`, approvedAt: new Date().toLocaleDateString() }]);
     }
 
     setIsModalOpen(false);
-    setFormData({ id: '', name: '', email: '', password: '', phone: '', userType: '', accessType: [], createDate: '', proofOfIdentity: '' });
+    setFormData({ id: '', name: '', email: '', password: '', contact: '', userType: '', registry: '', research: '', approvedAt: '', identity: '' });
   };
 
   const handleAddNewUser = () => {
     setSelectedUser(null);
-    setFormData({ id: '', name: '', email: '', password: '', phone: '', userType: '', accessType: [], createDate: '', proofOfIdentity: '' }); // Reset form for new user
+    setFormData({ id: '', name: '', email: '', password: '', contact: '', userType: '', registry: '', research: '', approvedAt: '', identity: '' }); // Reset form for new user
     setIsModalOpen(true);
   };
 
@@ -79,7 +104,7 @@ function ManageUsers() {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, proofOfIdentity: e.target.files[0] });
+    setFormData({ ...formData, identity: e.target.files[0] });
   };
 
   
@@ -159,7 +184,8 @@ function ManageUsers() {
               <th>Password</th>
               <th>Phone</th>
               <th>User Type</th>
-              <th>Access Type</th>
+              <th>Registry Access</th>
+              <th>Research Access</th>
               <th>Create Date</th>
               <th>Proof of Identity</th>
               <th>Action</th>
@@ -172,11 +198,12 @@ function ManageUsers() {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.password}</td>
-                <td>{user.phone}</td>
+                <td>{user.contact}</td>
                 <td>{user.userType}</td>
-                <td>{user.accessType.join(", ")}</td>
-                <td>{user.createDate}</td>
-                <td><a href={`/${user.proofOfIdentity}`} target="_blank">{user.proofOfIdentity}</a></td>
+                <td>{user.registry ? 'Yes' : 'No'}</td>
+                <td>{user.research ? 'Yes' : 'No'}</td>
+                <td>{user.approvedAt}</td>
+                <td><a href={`/${user.identity}`} target="_blank">{user.identity}</a></td>
                 <td>
                   <button className={styles.actionButton} onClick={(e) => showActionMenu(e, user.id)}>
                     ⋮
@@ -210,8 +237,8 @@ function ManageUsers() {
                 <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
                 <label>Password:</label>
                 <input type="password" name="password" value={formData.password} onChange={handleInputChange} required />
-                <label>Phone (optional):</label>
-                <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} />
+                <label>contact (optional):</label>
+                <input type="tel" name="contact" value={formData.contact} onChange={handleInputChange} />
                 <label>User Type:</label>
                 <select name="userType" value={formData.userType} onChange={handleInputChange} required>
                   <option value="">Select User Type</option>
@@ -244,7 +271,7 @@ function ManageUsers() {
         </div>
         
                 <label>Proof of Identity:</label>
-                <input type="file" name="proofOfIdentity" onChange={handleFileChange} required={!selectedUser} />
+                <input type="file" name="identity" onChange={handleFileChange} required={!selectedUser} />
                 <button type="submit">Save</button>
                 <button type="button" onClick={() => setIsModalOpen(false)}>Cancel</button>
               </form>

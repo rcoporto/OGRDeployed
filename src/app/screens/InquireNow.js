@@ -11,20 +11,48 @@ import { db } from '../../../firebase/firebase';
 function InquireNow() {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
+
     tag: '',
+    name: '',
+    email: '',
+    contact: '',
+    subject: '',
+    dateCreated: '',
+    status: 'Open',
     message: '',
+    
   });
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     // Reference to the 'tickets' collection
+  //     const ticketsRef = collection(db, 'tickets');
+
+  //     // Add a new document with formData
+  //     await addDoc(ticketsRef, formData);
+
+  //     alert('Ticket submitted successfully!');
+  //     setSubmitted(true);
+  //   } catch (error) {
+  //     console.error('Error submitting ticket: ', error);
+  //     alert('There was an error submitting the ticket.');
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Set the current date as the dateCreated field
+      const currentDate = new Date().toISOString();
+      const newFormData = { ...formData, dateCreated: currentDate };
+  
       // Reference to the 'tickets' collection
       const ticketsRef = collection(db, 'tickets');
-
+  
       // Add a new document with formData
-      await addDoc(ticketsRef, formData);
-
+      await addDoc(ticketsRef, newFormData);
+  
       alert('Ticket submitted successfully!');
       setSubmitted(true);
     } catch (error) {
@@ -32,6 +60,7 @@ function InquireNow() {
       alert('There was an error submitting the ticket.');
     }
   };
+  
 
   const handleReload = () => {
     setSubmitted(false);
@@ -64,6 +93,19 @@ function InquireNow() {
         {!submitted ? (
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
+              <label className={styles.label} htmlFor="message">Name *</label>
+              <textarea
+                id="name"
+                name="name"
+                className={styles.textarea}
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          
+
+            <div className={styles.formGroup}>
               <label className={styles.label} htmlFor="email">Email *</label>
               <input
                 type="email"
@@ -73,6 +115,17 @@ function InquireNow() {
                 value={formData.email}
                 onChange={handleChange}
                 required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label} htmlFor="message">Contact Number</label>
+              <textarea
+                id="contact"
+                name="contact"
+                className={styles.textarea}
+                value={formData.contact}
+                onChange={handleChange}
               />
             </div>
 
@@ -93,6 +146,18 @@ function InquireNow() {
                 <option value="Request">Request</option>
                 <option value="Others">Others</option>
               </select>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label} htmlFor="message">Subject *</label>
+              <textarea
+                id="subject"
+                name="subject"
+                className={styles.textarea}
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className={styles.formGroup}>

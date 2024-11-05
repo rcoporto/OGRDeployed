@@ -139,7 +139,8 @@ function NewUser() {
     contact: '',
     registry: false,
     research: false,
-    identity:  '', // This will hold the file input
+    identity:  '',
+    status: 'Pending',
   });
 
   const handleSubmit = async (e) => {
@@ -149,7 +150,6 @@ function NewUser() {
       // Reference to the 'newUser' collection
       const registryRef = collection(db, 'newUser');
   
-      // Add a new document with formData
       await addDoc(registryRef, {
         userType,
         name: formData.name,
@@ -157,8 +157,10 @@ function NewUser() {
         contact: formData.contact,
         registry: formData.registry,
         research: formData.research,
-         identity: formData.identity // You may handle file uploads differently
+        identity: formData.identity,
+        status: formData.status, // Add status field here
       });
+      
   
       alert('Form submitted successfully!');
       setSubmitted(true); // Mark as submitted
@@ -177,6 +179,7 @@ function NewUser() {
       registry: false,
       research: false,
       identity: '',
+      status: 'Pending', // Reset status
     });
     setUserType('');
   };
