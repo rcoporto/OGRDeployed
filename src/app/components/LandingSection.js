@@ -21,7 +21,7 @@ const LandingSection = () => {
         <section>
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
                 {/* <div class="bg-bluegreen-70 rounded-3xl p-8 md:p-12 mb-8"> */}
-                <div class="bg-cover bg-no-repeat bg-[url('../../public/equipment.jpg')] bg-gray-500 bg-blend-screen backdrop-blur-lg transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0 rounded-3xl p-8 md:p-12 mb-8">
+                <div class="bg-cover bg-no-repeat bg-[url('../../public/equipment.jpg')] bg-gray-500 bg-blend-screen backdrop-blur-lg transition-all duration-300 cursor-pointer filter hover:grayscale rounded-3xl p-8 md:p-12 mb-8">
                     <h1 class="text-bluegreen-80 text-3xl md:text-5xl font-extrabold mb-8 px-12">Vision for Generations: Advancing Eye Health Through Genetics</h1>
                     <p class="text-lg font-normal text-gray-70 font-lora mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <a href="#" class="inline-flex justify-center items-center py-2.5 px-5 text-base font-medium text-center text-white rounded-lg bg-pink-10 hover:bg-pink-30 focus:ring-4 focus:ring-pink-1">
