@@ -555,7 +555,7 @@ function Families({ isAdmin }) {
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
           {/* <table className={styles.eventTable}> */}
             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-              <thead class="text-base text-gray-700 uppercase bg-gray-50 text-center">
+              <thead class="text-base text-bluegreen-90 uppercase bg-gray-50 text-center">
                 <tr>
                   <th scope="col" class="px-6 py-3">Date</th>
                   <th scope="col" class="px-6 py-3">Event Title</th>
@@ -577,7 +577,7 @@ function Families({ isAdmin }) {
                                           </svg>
                           Edit</button>
                         {/* <button onClick={(e) => { e.stopPropagation(); deleteEvent(event.id); }} className={styles.deleteBtn}>Delete</button> */}
-                        <button onClick={(e) => { e.stopPropagation(); deleteEvent(event.id); }} class="text-white bg-gradient-to-r to-pink-10 from-pink-50 hover:bg-gradient-to-l focus:ring-4 focus:ring-pink-1 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 ">
+                        <button onClick={(e) => { e.stopPropagation(); deleteEvent(event.id); }} class="text-white bg-gradient-to-r to-pink-10 from-pink-50 hover:bg-gradient-to-l focus:ring-4 focus:ring-pink-1 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2">
                         <svg class="w-5 h-5 text-gray-20" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                       <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd"/>
                                       </svg>
@@ -667,10 +667,15 @@ function Families({ isAdmin }) {
                     {showForm.type === 'add' ? 'Submit' : 'Update'}
                   </button>
                 </form>
+                
               </div>
             </div>
           )}
         </section>
+        
+        <footer className={styles.footer}>
+        <p className='font-lora'>© {new Date().getFullYear()} National Ocular Genetic Registry</p>
+        </footer>
       </div>
     </>
   );

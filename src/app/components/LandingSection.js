@@ -49,10 +49,10 @@ const LandingSection = () => {
                         <img class="rounded-t-lg" src="/femaleeyedoctor.jpg" alt="" />
 
                         <div class="p-5">
-                            <h2 class="text-bluegreen-75 text-3xl font-extrabold mb-8">Book an appointment</h2>
+                            <h2 class="text-bluegreen-75 text-3xl font-extrabold mb-8">Lorem ipsum</h2>
                             <p class="text-lg font-normal text-gray-70 font-lora mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-bluegreen-60 rounded-lg hover:bg-bluegreen-70 focus:ring-4 focus:outline-none focus:ring-bluegreen-1">
-                                Book now
+                            <a href="/inquire-now" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-bluegreen-60 rounded-lg hover:bg-bluegreen-70 focus:ring-4 focus:outline-none focus:ring-bluegreen-1">
+                                Contact us
                                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                                 </svg>
