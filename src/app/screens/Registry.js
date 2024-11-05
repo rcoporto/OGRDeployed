@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import './Registry.css';
+
 
 //for firebase
 import { addDoc, collection } from 'firebase/firestore';
@@ -125,10 +127,11 @@ const Registry = () => {
   };
 
   return (
-    <div>
-      <title>Registry</title>
-      <Navbar />
+    <>
+    <Navbar />
+    <div className="registry-container">
 
+      <title>Registry</title>
       <h1>Registry</h1>
 
       <form onSubmit={handleSubmit}>
@@ -392,7 +395,7 @@ const Registry = () => {
           <option value="Hand Movement">Hand Movement</option>
         </select>
         <br />
-
+        
         <label>Left Eye:</label>
         <select 
           name="leftEye" 
@@ -492,7 +495,9 @@ const Registry = () => {
         <button type="submit">Submit</button>
       </form>
     </div>
+    </>
   );
+
 };
 
 export default Registry;
