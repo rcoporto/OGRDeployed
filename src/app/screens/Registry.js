@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import './Registry.css';
 
+import { useAuth } from '../context/authContext'; // Ensure this is imported correctly
+import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
+
 
 //for firebase
 import { addDoc, collection } from 'firebase/firestore';
@@ -38,6 +41,34 @@ const Registry = () => {
     registryNumber: ''
   });
 
+  //for login/access checking
+  const user = useAuth(); // Destructure logout directly
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
+  const [hasRegistryAccess, setHasRegistryAccess] = useState(false); // Track registry access
+  const router = useRouter();
+
+  useEffect(() => {
+    // Mock authentication and registry check; replace with real auth logic
+    // alert(JSON.stringify(user, null, 2));
+    // console.log("User data:", JSON.stringify(user, null, 2)); // For debugging
+    try{
+    if (user && user.user.registry === true) {
+      setIsAuthenticated(true);
+      setHasRegistryAccess(true);
+    } else {
+      setIsAuthenticated(false);
+      setHasRegistryAccess(false);
+      alert("You are not authorized!");
+      router.push('/login'); // Redirect to login page if unauthenticated
+    }
+  }
+  catch{
+    setIsAuthenticated(false);
+      setHasRegistryAccess(false);
+      alert("You are not authorized!");
+      router.push('/login'); // Redirect to login page if unauthenticated
+  }
+  }, []);
 
   const handleChange = (e) => {
   const { name, value, type } = e.target;
@@ -88,6 +119,7 @@ const Registry = () => {
 
   // Generate a unique registry number
   useEffect(() => {
+    
     if (formData.geneticTestingDate) {
       const year = new Date(formData.geneticTestingDate).getFullYear();
       const randomNumber = Math.floor(100000 + Math.random() * 900000); // Random 6-digit number
