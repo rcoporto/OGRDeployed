@@ -141,12 +141,27 @@ import { useRouter } from 'next/navigation'; // Next.js router
 import { useAuth } from '../context/authContext'; // Custom auth context for Firestore login
 import styles from './Login.module.css';
 import Navbar from '../components/Navbar';
+import { useEffect } from 'react';
 
 function Login() {
   const { login } = useAuth(); // Custom login function from authContext
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter(); // Next.js navigation
+  // const { message } = router.query; // Get the message from the query parameters
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const messageParam = urlParams.get('message');
+    setMessage(messageParam);
+  }, []);
+
+  useEffect(() => {
+    if (message === "no_access") {
+      alert("You do not have access to this page. Please log in or contact support.");
+    }
+  }, [message]);
 
   const handleLogin = async (e) => {
     e.preventDefault();

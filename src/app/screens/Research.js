@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import styles from './Research.module.css'
 
+//to check for valid access
+import { useAuth } from '../context/authContext'; // Ensure this is imported correctly
+import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
+
 // Sample data
 const initialData = [
   {
@@ -64,6 +68,33 @@ function Research() {
   const [variantFilter, setVariantFilter] = useState('');
   const [ageRange, setAgeRange] = useState([0, 100]);
   const [regionFilter, setRegionFilter] = useState('');
+
+  //for login/access checking
+  const user = useAuth(); // Destructure logout directly
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
+  const [hasRegistryAccess, setHasRegistryAccess] = useState(false); // Track registry access
+  const router = useRouter();
+
+  useEffect(() => {
+    try{
+    if (user && user.user.registry === true) {
+      setIsAuthenticated(true);
+      setHasRegistryAccess(true);
+    } else {
+      setIsAuthenticated(false);
+      setHasRegistryAccess(false);
+      //alert("You are not authorized!");
+      router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      
+    }
+  }
+  catch{
+    setIsAuthenticated(false);
+      setHasRegistryAccess(false);
+      //alert("You are not authorized!");
+      router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+  }
+  }, []);
 
   // Filter logic
   useEffect(() => {

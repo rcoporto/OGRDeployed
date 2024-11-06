@@ -104,12 +104,12 @@
 //   return useContext(AuthContext);
 // }
 
+// src/context/authContext.js
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { db } from '../firebase/firebase'; // Import Firestore instance as db
+import { db } from '../firebase/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { useRouter } from 'next/router';
 
 const AuthContext = createContext();
 
@@ -119,9 +119,11 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
+    console.log("Stored user:", storedUser);
     if (storedUser) setUser(storedUser);
     setLoading(false);
   }, []);
+  
 
   const login = async (email, password) => {
     setLoading(true);

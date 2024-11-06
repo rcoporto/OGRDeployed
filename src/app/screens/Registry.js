@@ -48,9 +48,6 @@ const Registry = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Mock authentication and registry check; replace with real auth logic
-    // alert(JSON.stringify(user, null, 2));
-    // console.log("User data:", JSON.stringify(user, null, 2)); // For debugging
     try{
     if (user && user.user.registry === true) {
       setIsAuthenticated(true);
@@ -58,15 +55,16 @@ const Registry = () => {
     } else {
       setIsAuthenticated(false);
       setHasRegistryAccess(false);
-      alert("You are not authorized!");
-      router.push('/login'); // Redirect to login page if unauthenticated
+      //alert("You are not authorized!");
+      router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      
     }
   }
   catch{
     setIsAuthenticated(false);
       setHasRegistryAccess(false);
-      alert("You are not authorized!");
-      router.push('/login'); // Redirect to login page if unauthenticated
+      //alert("You are not authorized!");
+      router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
   }
   }, []);
 
