@@ -72,17 +72,17 @@ function Research() {
   //for login/access checking
   const user = useAuth(); // Destructure logout directly
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
-  const [hasRegistryAccess, setHasRegistryAccess] = useState(false); // Track registry access
+  const [hasResearcjAccess, setHasResearchAccess] = useState(false); // Track research access
   const router = useRouter();
 
   useEffect(() => {
     try{
-    if (user && user.user.registry === true) {
+    if (user && user.user.research === true) {
       setIsAuthenticated(true);
-      setHasRegistryAccess(true);
+      setHasResearchAccess(true);
     } else {
       setIsAuthenticated(false);
-      setHasRegistryAccess(false);
+      setHasResearchAccess(false);
       //alert("You are not authorized!");
       router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
       
@@ -90,7 +90,7 @@ function Research() {
   }
   catch{
     setIsAuthenticated(false);
-      setHasRegistryAccess(false);
+      setHasResearchAccess(false);
       //alert("You are not authorized!");
       router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
   }
