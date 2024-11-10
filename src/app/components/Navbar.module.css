@@ -1,58 +1,78 @@
-/* @font-face {
-  font-family: 'Lora'; 
-  src: url('../fonts/Lora-Italic-VariableFont_wght.ttf'); 
-} */
-
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #DBC2CF;
-    padding: 1rem;
-    color: #6fb3ca;
-    font-family: 'Poppins', sans-serif; /* Apply the Poppins font */
-    box-shadow: 3px 3px 5px 0px rgba(60, 122, 137, 0.5);
-    border-radius: 143px 143px 143px 143px;
-    -moz-border-radius: 143px 143px 143px 143px;
-    -webkit-border-radius: 143px 143px 143px 143px;
-    border: 0px solid #000000;
-    margin: 1% 3%;
-    background-color: #F5F5F5;
-    z-index: 50;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: 600; /* Adjust font-weight to use the font weights you included */
-  }
-  
-  .navLinks {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .navLinks li {
-    margin: 0;
-  }
-  
-  .link {
-    color: #2E4756;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    font-family: 'Poppins', sans-serif; 
-  }
-  
-  .link:hover {
-    background-color: #555;
-    cursor: pointer;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #DBC2CF;
+  padding: 1rem;
+  color: #6fb3ca;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 3px 3px 5px 0px rgba(60, 122, 137, 0.5);
+  border-radius: 143px;
+  margin: 1% 3%;
+  background-color: #F5F5F5;
+  z-index: 1;
+}
 
-  .link:current {
-    background-color: brown;
-  }
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
 
+.link {
+  color: #2E4756;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.link:hover {
+  background-color: #555;
+  cursor: pointer;
+}
+
+.userSection {
+  position: relative;
+  cursor: pointer;
+  color: #2E4756;
+  font-weight: bold;
+  padding-right: 40px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+
+  background-color: #DBC2CF;
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
   
+}
+
+.dropdownItem {
+  background: none;
+  border: none;
+  color: #2E4756;
+  padding: 0.5rem;
+  text-align: center;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #555;
+  color: #fff;
+}
