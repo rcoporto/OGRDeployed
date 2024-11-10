@@ -254,7 +254,7 @@ function InquireNow() {
     <div>
       <div className={styles.page}>
          <title>Inquire Now</title>
-           <Navbar />
+          <Navbar />
 
           <Image
               src="/wavelines4.png" 
@@ -265,12 +265,12 @@ function InquireNow() {
           />
 
           <div class="my-12 mx-20 text-center z-10">
-            <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-bluegreen-80 md:text-4xl lg:text-5xl">Submit a <span class="underline underline-offset-3 decoration-8 decoration-bluegreen-1">Ticket</span></h1>
+            <h1 class="mb-6 text-3xl font-extrabold leading-none tracking-tight text-bluegreen-80 md:text-4xl lg:text-5xl">Submit a <span class="underline underline-offset-3 decoration-8 decoration-bluegreen-1">Ticket</span></h1>
             
 
             {/* Conditional rendering for subtitle */}
             {!submitted && (
-              <p class="mb-10 text-lg font-normal font-lora text-gray-60 lg:text-xl">See schedule of upcoming activities of patients here.</p>
+              <p class="mb-10 text-lg font-normal font-lora text-gray-60 lg:text-xl">Please provide your email and message below, and we will get back to you shortly.</p>
               // <p className={styles.subtitle}>
               //   Please provide your email and message below, and we will get back to you shortly.
               // </p> 
@@ -324,12 +324,12 @@ function InquireNow() {
                   </div>
 
                   <div class="relative">
-                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} wrap="hard" rows={6} class="block px-2.5 pb-2.5 pt-4 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer" placeholder=" " required/>
+                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} wrap="hard" rows={4} class="block px-2.5 pb-2.5 pt-4 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer" placeholder=" " required/>
                     <label htmlFor="message" class="absolute text-sm text-gray-60 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-bluegreen-70 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
                     Message <span class="text-pink-50">*</span></label>
                   </div>
 
-                  <button type="submit" class="text-white bg-pink-20 hover:bg-pink-50 focus:ring-4 focus:ring-pink-1 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 ">Submit</button>
+                  <button type="submit" class="text-white bg-pink-20 hover:bg-pink-50 focus:ring-4 focus:ring-pink-1 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2">Submit</button>
 
                   {/* <button type="submit" className={styles.submitButton}>Submit</button> */}
 
@@ -420,10 +420,16 @@ function InquireNow() {
                 </form>
 
               ) : (
-                <div className={styles.confirmation}>
-                  <h2>Ticket Submitted!</h2> <br />
-                  <p>Thank you for reaching out. We’ll get back to you shortly.</p> <br />
-                  <button onClick={handleReload} className={styles.submitButton}>
+                // <div className={styles.confirmation}>
+                <div>
+                  <div class="bg-cover bg-no-repeat bg-[url('../../public/oph_banner.jpg')] bg-blend-screen rounded-3xl p-12 md:p-24 mb-16">
+                    
+                </div>
+                <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10"></hr>
+                  <h4 class="text-xl text-pink-50 mb-5">Ticket Submitted!</h4>
+                  <p class="mb-16 text-sm font-normal font-lora text-gray-60 lg:text-base">Thank you for reaching out. We’ll get back to you shortly.</p>
+                  {/* <button onClick={handleReload} className={styles.submitButton}> */}
+                  <button onClick={handleReload} class="text-white bg-bluegreen-90 hover:bg-bluegreen-80 focus:ring-4 focus:ring-bluegreen-75 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2">
                     Submit another ticket
                   </button>
                 </div>
@@ -434,9 +440,9 @@ function InquireNow() {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#55A1B4" fill-opacity="1" d="M0,96L48,128C96,160,192,224,288,250.7C384,277,480,267,576,229.3C672,192,768,128,864,112C960,96,1056,128,1152,138.7C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
         </path></svg>
 
-        <footer className={styles.footer}>
+        {/* <footer className={styles.footer}>
         <p className='font-lora'>© {new Date().getFullYear()} National Ocular Genetic Registry</p>
-        </footer>
+        </footer> */}
       </div>
 
     </div>

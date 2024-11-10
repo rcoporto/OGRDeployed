@@ -1,3 +1,15 @@
+.page {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  /* min-height: fit-content; */
+  min-height: 100vh;
+  /* max-height: 150vh; */
+  background-color: #F8F8FF;
+  background-position: top;
+  background-size: contain;
+}
+
 .container {
     display: flex;
     flex-direction: column;

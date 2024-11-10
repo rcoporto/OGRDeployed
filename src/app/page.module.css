@@ -4,7 +4,7 @@
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: fit-content;
   background-color: #F8F8FF;
   /* background-image: url('../../public/wavelines.png'); */
   background-position: top;

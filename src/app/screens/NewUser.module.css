@@ -1,6 +1,25 @@
-@font-face {
+/* @font-face {
   font-family: 'Lora'; 
   src: url('../fonts/Lora-Italic-VariableFont_wght.ttf'); 
+} */
+
+.page {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  /* min-height: fit-content; */
+  min-height: 100vh;
+  /* max-height: 150vh; */
+  background-color: #F8F8FF;
+  background-position: top;
+  background-size: contain;
+}
+
+.footer {
+  background-color: #65697B;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
 }
 
 .container {
