@@ -232,7 +232,7 @@ function NewUser() {
                   <form action="#" onSubmit={handleSubmit}>
 
                     <div class="relative mb-6">
-                      <label htmlFor="userType" class="block mb-2 text-left text-sm font-medium text-gray-900">I am a <span class="text-pink-50">*</span></label>
+                      <label htmlFor="userType" class="block mb-2 text-left text-sm font-medium text-bluegreen-90">I am a <span class="text-pink-50">*</span></label>
                       <select
                           id="userType"
                           class="block px-2.5 pb-2.5 pt-4 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
@@ -250,7 +250,7 @@ function NewUser() {
                     </div>
 
                     <div class="relative mb-6">
-                      <label htmlFor="userType" class="block mb-2 text-left text-sm font-medium text-gray-900">I am requesting for <span class="text-pink-50">*</span></label>
+                      <label htmlFor="userType" class="block mb-2 text-left text-sm font-medium text-bluegreen-90">I am requesting for <span class="text-pink-50">*</span></label>
                       {/* <input 
                         type="checkbox" 
                         id="registry" 
