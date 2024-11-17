@@ -38,14 +38,6 @@
   cursor: pointer;
 }
 
-.userSection {
-  position: relative;
-  cursor: pointer;
-  color: #2E4756;
-  font-weight: bold;
-  padding-right: 40px;
-}
-
 .dropdownMenu {
   position: absolute;
   top: 100%;
@@ -75,4 +67,44 @@
 .dropdownItem:hover {
   background-color: #555;
   color: #fff;
+}
+
+
+.link {
+  color: #2e4756;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.link:hover {
+  background-color: #555;
+  color: #fff;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #555; /* Match the hover background color */
+  color: #fff;           /* Match the hover text color */   
+}
+
+
+.userSection {
+  position: relative;
+  cursor: pointer;
+  color: #2E4756;
+  font-weight: bold;
+  padding-right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.userName {
+  max-width: 150px; /* Adjust as needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
