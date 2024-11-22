@@ -255,6 +255,7 @@ const NAV_LINKS = [
 { href: "/research", key: "research", label: "Research" },
 { href: "/inquire-now", key: "inquire_now", label: "Inquire Now" },
 { href: "/new-user", key: "register_now", label: "Register Now" },
+user?.userType==="Admin"?{href:"/admin/catch-basin", key: "Admin", label: "Admin"}:null,
 !user ? { href: "/login", key: "login", label: "Login" } : null,
 ].filter(Boolean);
 

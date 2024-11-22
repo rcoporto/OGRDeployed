@@ -228,7 +228,7 @@ function InquireNow() {
       // Add a new document with formData
       await addDoc(ticketsRef, newFormData);
   
-      alert('Ticket submitted successfully!');
+      //alert('Ticket submitted successfully!');
       setSubmitted(true);
     } catch (error) {
       console.error('Error submitting ticket: ', error);

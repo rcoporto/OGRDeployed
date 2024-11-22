@@ -289,6 +289,10 @@ import { db } from "../../../../firebase/firebase"; // Make sure the path is cor
 import styles from './ManageApplications.module.css';
 import Sidebar from './Sidebar';
 
+//to check for valid access
+import { useAuth } from '../../context/authContext'; // Ensure this is imported correctly
+import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
+
 const ManageApplications = () => {
   const [applications, setApplications] = useState([]);
   const [filteredApplications, setFilteredApplications] = useState([]);
@@ -308,6 +312,33 @@ const ManageApplications = () => {
     }
     return password;
   };
+
+  //for login/access checking
+  const user = useAuth(); // Destructure logout directly
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
+  const [hasAdminAccess, setHasAdminAccess] = useState(false); // Track research access
+  const router = useRouter();
+  //check if admin
+  useEffect(() => {
+    try{
+    if (user && user.user.userType === "Admin") {
+      setIsAuthenticated(true);
+      setHasAdminAccess(true);
+    } else {
+      setIsAuthenticated(false);
+      setHasAdminAccess(false);
+      router.push('/invalid')
+      
+    }
+  }
+  catch{
+    setIsAuthenticated(false);
+      setHasAdminAccess(false);
+      router.push('/invalid')
+  }
+  }, []);
+
+  
   
   // Fetch applications from Firestore
   useEffect(() => {

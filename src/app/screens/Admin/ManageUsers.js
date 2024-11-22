@@ -7,6 +7,10 @@
   import { db } from "../../../../firebase/firebase";
   import { format } from 'date-fns';
 
+  //to check for valid access
+  import { useAuth } from '../../context/authContext'; // Ensure this is imported correctly
+  import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
+
   function ManageUsers() {
     const [users, setUsers] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
@@ -21,6 +25,31 @@
       registry: false, research: false, approvedAt: '', identity: '' 
     });
     const actionMenuRef = useRef(null);
+
+    //for login/access checking
+  const user = useAuth(); // Destructure logout directly
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
+  const [hasAdminAccess, setHasAdminAccess] = useState(false); // Track research access
+  const router = useRouter();
+  //check if admin
+  useEffect(() => {
+    try{
+    if (user && user.user.userType === "Admin") {
+      setIsAuthenticated(true);
+      setHasAdminAccess(true);
+    } else {
+      setIsAuthenticated(false);
+      setHasAdminAccess(false);
+      router.push('/invalid')
+      
+    }
+  }
+  catch{
+    setIsAuthenticated(false);
+      setHasAdminAccess(false);
+      router.push('/invalid')
+  }
+  }, []);
 
     // Fetch users from Firebase
     useEffect(() => {
@@ -60,8 +89,10 @@
       setIsModalOpen(true);
     };
 
-    const handleDelete = (userId) => {
+    const handleDelete = async (userId) => {
       if (window.confirm("Are you sure you want to delete this user?")) {
+        const userRef = doc(db, "registeredUsers", userId);
+        await deleteDoc(userRef);
         setUsers(users.filter(user => user.id !== userId));
       }
     };
@@ -185,7 +216,8 @@
             </thead>
             <tbody>
               {filteredUsers.map(user => (
-                <tr key={user.id} onClick={() => handleRowClick(user)}>
+                // <tr key={user.id} onClick={() => handleRowClick(user)}>
+                <tr key={user.id} >
                   <td>{user.id}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>

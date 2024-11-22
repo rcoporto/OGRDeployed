@@ -163,7 +163,7 @@ function NewUser() {
       });
       
   
-      alert('Form submitted successfully!');
+      //alert('Form submitted successfully!');
       setSubmitted(true); // Mark as submitted
     } catch (error) {
       console.error('Error adding document: ', error);

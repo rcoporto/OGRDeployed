@@ -72,7 +72,7 @@ function Research() {
   //for login/access checking
   const user = useAuth(); // Destructure logout directly
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
-  const [hasResearcjAccess, setHasResearchAccess] = useState(false); // Track research access
+  const [hasResearchAccess, setHasResearchAccess] = useState(false); // Track research access
   const router = useRouter();
 
   useEffect(() => {
@@ -84,15 +84,16 @@ function Research() {
       setIsAuthenticated(false);
       setHasResearchAccess(false);
       //alert("You are not authorized!");
-      router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
-      
+      // router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      router.push('/invalid')
     }
   }
   catch{
     setIsAuthenticated(false);
       setHasResearchAccess(false);
       //alert("You are not authorized!");
-      router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      router.push('/invalid')
   }
   }, []);
 

@@ -57,7 +57,8 @@ const Registry = () => {
       setIsAuthenticated(false);
       setHasRegistryAccess(false);
       //alert("You are not authorized!");
-      router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      router.push('/invalid')
       
     }
   }
@@ -65,7 +66,8 @@ const Registry = () => {
     setIsAuthenticated(false);
       setHasRegistryAccess(false);
       //alert("You are not authorized!");
-      router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      router.push('/invalid')
   }
   }, []);
 
