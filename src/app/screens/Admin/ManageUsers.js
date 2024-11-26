@@ -1,5 +1,6 @@
   "use client";
 
+  import Navbar from '../../components/Navbar';
   import React, { useState, useEffect, useRef } from 'react';
   import styles from './ManageUsers.module.css';
   import Sidebar from './Sidebar';
@@ -171,13 +172,26 @@
     });
 
     return (
-      <div>
+      <div
+  className={styles.page}
+  style={{
+    backgroundImage: "url('/wavelines4.png')",
+    backgroundColor: "white",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed', 
+    minHeight: '100vh',
+    width: '100vw',
+  }}
+>
+        <Navbar />
         <Sidebar />
         <div className={styles.container}>
           <h1 className={styles.title}>Manage Users</h1>
 
           <div className={styles.filters}>
-            <select value={userTypeFilter} onChange={(e) => setUserTypeFilter(e.target.value)}>
+            <select class value={userTypeFilter} onChange={(e) => setUserTypeFilter(e.target.value)}>
               <option value="">Filter by User Type</option>
               <option value="Doctor">Doctor</option>
               <option value="Nurse">Nurse</option>
@@ -198,6 +212,7 @@
             />
           </div>
 
+          <div className={styles.tableContainer}>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -247,6 +262,7 @@
               ))}
             </tbody>
           </table>
+          </div>
 
           <button className={styles.addButton} onClick={handleAddNewUser}>Add a New User</button>
 

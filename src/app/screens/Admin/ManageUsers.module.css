@@ -1,7 +1,16 @@
+
+
+
 .container {
-    padding: 20px;
-    margin-left: 370px;
-    background-color: #f4f7fc; /* Lighter background similar to the second CSS */
+
+    flex: 1;
+    margin-top: 30px;
+    padding: 50px;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    background-color: white; /* Adjusted light background color */
+    height: 75vh;
+    border-radius: 70px;
 }
 
 .title {
@@ -12,46 +21,79 @@
 }
 
 .filters {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: flex-end; /* Aligns the select and input to the right */
 }
+
 
 .filters select,
 .filters input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    font-size: 14px; /* Standard font size for consistency */
-    background-color: #fff;
-    color: #333;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
 }
 
+.filters select{
+  width: 200px;
+}
+
+
+.tableContainer {
+  overflow-y: auto;
+  max-height: 60vh;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Table styling */
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    background-color: #fff; /* White background for the table */
-    border-radius: 8px; /* Softer rounded corners for modern look */
-    overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .table th,
 .table td {
-    padding: 12px 15px; /* More spacious padding for a clean look */
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-    color: #333; /* Darker text color */
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+  color: #2e3a59; /* Consistent dark blue text */
 }
 
 .table th {
-    background-color: #f4f4f4; /* Subtle background for table header */
+  background-color: #f1f5ff;
+  font-weight: bold;
+  border-bottom: 2px solid #d1d9e6;
+}
+
+.table tr {
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .table tr:hover {
-    background-color: #d0ebff; /* Lighter hover effect to match second CSS */
+  background-color: #eef3fb; /* Light blue hover */
 }
+
+.table td {
+  border-bottom: 1px solid #eaeff5;
+}
+
+/* Target the second-to-last column (nth-last-child(2)) */
+.table th:nth-last-child(2), 
+.table td:nth-last-child(2) {
+  max-width: 200px; /* Set the maximum width for the second-to-last column */
+  overflow: hidden; /* Hide any overflowing content */
+  text-overflow: ellipsis; /* Display ellipsis (...) if text overflows */
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+}
+
 
 .actionButton {
     background: none;
@@ -89,16 +131,19 @@
 
 .addButton {
     padding: 10px 20px;
-    background-color: #00aaff;
+    background-color: #6fb3ca;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
     font-weight: bold; /* Stronger button text */
 }
 
 .addButton:hover {
     background-color: #0088cc;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
 }
 
 .modal {

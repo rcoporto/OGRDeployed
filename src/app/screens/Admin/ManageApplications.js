@@ -288,6 +288,7 @@ import { collection, getDocs, updateDoc, doc, deleteDoc, getDoc, setDoc, } from 
 import { db } from "../../../../firebase/firebase"; // Make sure the path is correct
 import styles from './ManageApplications.module.css';
 import Sidebar from './Sidebar';
+import Navbar from '../../components/Navbar';
 
 //to check for valid access
 import { useAuth } from '../../context/authContext'; // Ensure this is imported correctly
@@ -463,6 +464,20 @@ const ManageApplications = () => {
   };
 
   return (
+    <div
+  className={styles.page}
+  style={{
+    backgroundImage: "url('/wavelines4.png')",
+    backgroundColor: "white",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed', 
+    minHeight: '100vh',
+    width: '100vw',
+  }}
+>
+    <Navbar />
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.content}>
@@ -562,6 +577,7 @@ const ManageApplications = () => {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };
