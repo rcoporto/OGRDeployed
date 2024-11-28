@@ -295,19 +295,23 @@ const Registry = () => {
                   class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
                 >
                   <option value="">Select</option>
-                  <option value="Region 1">Region 1</option>
-                  <option value="Region 2">Region 2</option>
-                  <option value="Region 3">Region 3</option>
-                  <option value="Region 4">Region 4</option>
-                  <option value="Region 5">Region 5</option>
-                  <option value="Region 6">Region 6</option>
-                  <option value="Region 7">Region 7</option>
-                  <option value="Region 8">Region 8</option>
-                  <option value="Region 9">Region 9</option>
-                  <option value="Region 10">Region 10</option>
-                  <option value="Region 11">Region 11</option>
-                  <option value="Region 12">Region 12</option>
                   <option value="NCR">NCR</option>
+                  <option value="Region I">Region I</option>
+                  <option value="Region II">Region II</option>
+                  <option value="Region III">Region III</option>
+                  <option value="Region IV-A">Region IV-A</option>
+                  <option value="MIMAROPA">MIMAROPA</option>
+                  <option value="Region V">Region V</option>
+                  <option value="Region VI">Region VI</option>
+                  <option value="Region VII">Region VII</option>
+                  <option value="Region VIII">Region VIII</option>
+                  <option value="Region IX">Region IX</option>
+                  <option value="Region X">Region X</option>
+                  <option value="Region XI">Region XI</option>
+                  <option value="Region XII">Region XII</option>
+                  <option value="Region XIII">Region XIII</option>
+                  <option value="Region CAR">CAR</option>
+                  <option value="BARMM">BARMM</option>
                 </select>        
               </div>
 
@@ -613,9 +617,14 @@ const Registry = () => {
         {/* end of entire registry form */}
         </div>
         
-        <div class="my-12 mx-20 text-center z-10">
+        {/* <div class="my-12 mx-20 text-center z-10">
           <button type="submit" class="text-white bg-pink-20 hover:bg-pink-50 focus:ring-4 focus:ring-pink-1 font-medium rounded-lg text-lg px-10 py-5 text-center justify-items-center w-max">Submit</button>
-        </div>
+        </div> */}
+        <form class="space-y-4" onSubmit={handleSubmit}>
+          <div class="my-12 mx-20 text-center z-10">
+            <button type="submit" class="text-white bg-pink-20 hover:bg-pink-50 focus:ring-4 focus:ring-pink-1 font-medium rounded-lg text-lg px-10 py-5 text-center justify-items-center w-max">Submit</button>
+          </div>
+        </form>
         
 
       </div>
