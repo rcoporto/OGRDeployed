@@ -1,5 +1,6 @@
 "use client"
 
+import { Datepicker } from 'flowbite-react';
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 // import './Registry.css';
@@ -43,33 +44,33 @@ const Registry = () => {
   });
 
   //for login/access checking
-  const user = useAuth(); // Destructure logout directly
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
-  const [hasRegistryAccess, setHasRegistryAccess] = useState(false); // Track registry access
-  const router = useRouter();
+  // const user = useAuth(); // Destructure logout directly
+  // const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
+  // const [hasRegistryAccess, setHasRegistryAccess] = useState(false); // Track registry access
+  // const router = useRouter();
 
-  useEffect(() => {
-    try{
-    if (user && user.user.registry === true) {
-      setIsAuthenticated(true);
-      setHasRegistryAccess(true);
-    } else {
-      setIsAuthenticated(false);
-      setHasRegistryAccess(false);
-      //alert("You are not authorized!");
-      //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
-      router.push('/invalid')
+  // useEffect(() => {
+  //   try{
+  //   if (user && user.user.registry === true) {
+  //     setIsAuthenticated(true);
+  //     setHasRegistryAccess(true);
+  //   } else {
+  //     setIsAuthenticated(false);
+  //     setHasRegistryAccess(false);
+  //     //alert("You are not authorized!");
+  //     //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+  //     router.push('/invalid')
       
-    }
-  }
-  catch{
-    setIsAuthenticated(false);
-      setHasRegistryAccess(false);
-      //alert("You are not authorized!");
-      //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
-      router.push('/invalid')
-  }
-  }, []);
+  //   }
+  // }
+  // catch{
+  //   setIsAuthenticated(false);
+  //     setHasRegistryAccess(false);
+  //     //alert("You are not authorized!");
+  //     //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+  //     router.push('/invalid')
+  // }
+  // }, []);
 
   const handleChange = (e) => {
   const { name, value, type } = e.target;
@@ -258,6 +259,11 @@ const Registry = () => {
                     class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
                   />        
                 </div>
+                
+{/* <div class="relative">
+  <Datepicker ye />
+</div> */}
+
 
                 <div class="relative">
                   <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Age</label>

@@ -15,7 +15,7 @@ function Invalid() {
       <h1 className={styles.text}>Access Denied</h1>
       <p className={styles.message}>You do not have access to this page.</p>
       <button className={styles.button} onClick={handleGoBack}>
-        Go Back to Homepage
+        Go back to Homepage
       </button>
     </div>
   );

@@ -1,11 +1,13 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import styles from './Research.module.css'
+import styles from './Research.module.css';
+import 'flowbite';
+import { initFlowbite } from 'flowbite';
 
 //to check for valid access
-import { useAuth } from '../context/authContext'; // Ensure this is imported correctly
-import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
+// import { useAuth } from '../context/authContext'; // Ensure this is imported correctly
+// import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
 
 // Sample data
 const initialData = [
@@ -70,32 +72,32 @@ function Research() {
   const [regionFilter, setRegionFilter] = useState('');
 
   //for login/access checking
-  const user = useAuth(); // Destructure logout directly
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
-  const [hasResearchAccess, setHasResearchAccess] = useState(false); // Track research access
-  const router = useRouter();
+  // const user = useAuth(); // Destructure logout directly
+  // const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
+  // const [hasResearchAccess, setHasResearchAccess] = useState(false); // Track research access
+  // const router = useRouter();
 
-  useEffect(() => {
-    try{
-    if (user && user.user.research === true) {
-      setIsAuthenticated(true);
-      setHasResearchAccess(true);
-    } else {
-      setIsAuthenticated(false);
-      setHasResearchAccess(false);
-      //alert("You are not authorized!");
-      // router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
-      router.push('/invalid')
-    }
-  }
-  catch{
-    setIsAuthenticated(false);
-      setHasResearchAccess(false);
-      //alert("You are not authorized!");
-      //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
-      router.push('/invalid')
-  }
-  }, []);
+  // useEffect(() => {
+  //   try{
+  //   if (user && user.user.research === true) {
+  //     setIsAuthenticated(true);
+  //     setHasResearchAccess(true);
+  //   } else {
+  //     setIsAuthenticated(false);
+  //     setHasResearchAccess(false);
+  //     //alert("You are not authorized!");
+  //     // router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+  //     router.push('/invalid')
+  //   }
+  // }
+  // catch{
+  //   setIsAuthenticated(false);
+  //     setHasResearchAccess(false);
+  //     //alert("You are not authorized!");
+  //     //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+  //     router.push('/invalid')
+  // }
+  // }, []);
 
   // Filter logic
   useEffect(() => {
@@ -117,6 +119,7 @@ function Research() {
     }
 
     setFilteredData(filtered);
+    initFlowbite();
   }, [diseaseFilter, variantFilter, ageRange, regionFilter]);
 
   // Statistics calculation
@@ -145,14 +148,301 @@ function Research() {
   };
 
   return (
-<>
-<Navbar />
-<div className={styles.container}>
-  <title>Research</title>
-  <h1 className={styles.title}>Ocular Genetic Registry</h1>
+    <div>
+      <div class="flex flex-col min-h-0.5 bg-[#F8F8FF] bg-top bg-contain">
+        <title>Research</title>
+          <Navbar />
+
+          <div class="my-12 mx-20 text-center z-10">
+            <h1 class="text-center mb-6 text-3xl font-extrabold leading-none tracking-tight text-bluegreen-80 md:text-4xl lg:text-5xl">Research</h1>
+          </div>
 
   {/* Main Content Area */}
   <div className={styles.mainContent}>
+
+  <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    {/* <div class="sm:hidden">
+        <label for="tabs" class="sr-only">Select tab</label>
+        <select id="tabs" class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option>Retinitis Pigmentosa</option>
+            <option>Stargardt Disease</option>
+            <option>Cone Rod Dystrophy</option>
+        </select>
+    </div> */}
+    <ul class=" text-sm font-medium font-poppins text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse" id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
+        <li class="w-full">
+            <button id="retinitis-tab" data-tabs-target="#retinitis" type="button" role="tab" aria-controls="retinitis" aria-selected="true" class="inline-block w-full p-4 rounded-ss-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Retinitis Pigmentosa</button>
+        </li>
+        <li class="w-full">
+            <button id="stargardt-tab" data-tabs-target="#stargardt" type="button" role="tab" aria-controls="stargardt" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Stargardt Disease</button>
+        </li>
+        <li class="w-full">
+            <button id="conerod-tab" data-tabs-target="#conerod" type="button" role="tab" aria-controls="conerod" aria-selected="false" class="inline-block w-full p-4 rounded-se-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Cone Rod Dystrophy</button>
+        </li>
+    </ul>
+
+    <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600">
+        <div class=" p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="retinitis" role="tabpanel" aria-labelledby="retinitis-tab">
+
+          
+
+<div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-pink-30 hover:text-pink-20 border-pink-50" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-pink-10 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="overallRP-styled-tab" data-tabs-target="#styled-overallRP" type="button" role="tab" aria-controls="overallRP" aria-selected="false">Overall</button>
+        </li>
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="RLPB1-styled-tab" data-tabs-target="#styled-RLPB1" type="button" role="tab" aria-controls="RLPB1" aria-selected="false">RLPB1</button>
+        </li>
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="RP1-styled-tab" data-tabs-target="#styled-RP1" type="button" role="tab" aria-controls="RP1" aria-selected="false">RP1</button>
+        </li>
+        <li role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="RHO-styled-tab" data-tabs-target="#styled-RHO" type="button" role="tab" aria-controls="RHO" aria-selected="false">RHO</button>
+        </li>
+        <li role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="RPE65-styled-tab" data-tabs-target="#styled-RPE65" type="button" role="tab" aria-controls="RPE65" aria-selected="false">RPE65</button>
+        </li>
+    </ul>
+</div>
+<div id="default-styled-tab-content">
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-overallRP" role="tabpanel" aria-labelledby="overallRP-tab">
+    <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
+                <div class="flex flex-col text-center " >
+                    <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">123</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average duration of illness</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">{averageAge.toFixed(2)}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average age</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">{averageVision.toFixed(2)}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average vision</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">{cornealOpacityCount}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of presence of corneal opacity</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">{retinaChangeCount}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of retina changes</dd>
+                </div>
+                <div class="flex flex-col text-center">
+                    <dt class="mb-2 text-2xl text-bluegreen-1 font-extrabold">{totalCount}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Total count</dd>
+                </div>
+            </dl>
+    </div>
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-RLPB1" role="tabpanel" aria-labelledby="RLPB1-tab">
+    <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
+                <div class="flex flex-col text-center " >
+                    <dt class="mb-2 text-2xl font-extrabold">456</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average duration of illness</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">{averageAge.toFixed(2)}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average age</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">{averageVision.toFixed(2)}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average vision</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">{cornealOpacityCount}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of presence of corneal opacity</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">{retinaChangeCount}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of retina changes</dd>
+                </div>
+                <div class="flex flex-col text-center">
+                    <dt class="mb-2 text-2xl font-extrabold">{totalCount}</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Total count</dd>
+                </div>
+            </dl> 
+    </div>
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-RP1" role="tabpanel" aria-labelledby="RP1-tab">
+    <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
+                <div class="flex flex-col text-center " >
+                    <dt class="mb-2 text-2xl font-extrabold">999</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average duration of illness</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">999</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average age</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">999</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average vision</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">999</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of presence of corneal opacity</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">999</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of retina changes</dd>
+                </div>
+                <div class="flex flex-col text-center">
+                    <dt class="mb-2 text-2xl font-extrabold">999</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Total count</dd>
+                </div>
+            </dl>     
+    </div>
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-RHO" role="tabpanel" aria-labelledby="RHO-tab">
+         
+    </div>
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-RPE65" role="tabpanel" aria-labelledby="RPE65-tab">
+            
+    </div>
+</div>
+
+
+            {/* <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
+                <div class="flex flex-col text-center " >
+                    <dt class="mb-2 text-2xl font-extrabold">123</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Average duration of illness</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">123</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Average age</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">123</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Average vision</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">123</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Frequency of presence of corneal opacity</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">123</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Frequency of retina changes</dd>
+                </div>
+                <div class="flex flex-col text-center">
+                    <dt class="mb-2 text-2xl font-extrabold">123</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Total count</dd>
+                </div>
+            </dl> */}
+        </div>
+
+        
+        <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="stargardt" role="tabpanel" aria-labelledby="stargardt-tab">
+
+        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="overallSD-styled-tab" data-tabs-target="#styled-overallSD" type="button" role="tab" aria-controls="overallSD" aria-selected="false">Overall</button>
+        </li>
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="STGD2-styled-tab" data-tabs-target="#styled-STGD2" type="button" role="tab" aria-controls="STGD2" aria-selected="false">STGD2</button>
+        </li>
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="STGD3-styled-tab" data-tabs-target="#styled-STGD3" type="button" role="tab" aria-controls="STGD3" aria-selected="false">STGD3</button>
+        </li>
+        <li role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="STGD4-styled-tab" data-tabs-target="#styled-STGD4" type="button" role="tab" aria-controls="STGD4" aria-selected="false">STGD4</button>
+        </li>
+    </ul>
+</div>
+<div id="default-styled-tab-content">
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-overallSD" role="tabpanel" aria-labelledby="overallSD-tab">
+    <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
+                <div class="flex flex-col text-center " >
+                    <dt class="mb-2 text-2xl font-extrabold">789</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average duration of illness</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">789</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average age</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">789</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average vision</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">789</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of presence of corneal opacity</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">789</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of retina changes</dd>
+                </div>
+                <div class="flex flex-col text-center">
+                    <dt class="mb-2 text-2xl font-extrabold">789</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Total count</dd>
+                </div>
+            </dl>
+    </div>
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-STGD2" role="tabpanel" aria-labelledby="STGD2-tab">
+ 
+    </div>
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-STGD3" role="tabpanel" aria-labelledby="STGD3-tab">
+          
+    </div>
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-STGD4" role="tabpanel" aria-labelledby="STGD4-tab">
+         
+    </div>
+</div>
+
+        </div>
+
+        <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="conerod" role="tabpanel" aria-labelledby="conerod-tab">
+        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="overallCR-styled-tab" data-tabs-target="#styled-overallCR" type="button" role="tab" aria-controls="overallCR" aria-selected="false">Overall</button>
+        </li>
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="CNGA3-styled-tab" data-tabs-target="#styled-CNGA3" type="button" role="tab" aria-controls="CNGA3" aria-selected="false">CNGA3</button>
+        </li>
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="ABCA4-styled-tab" data-tabs-target="#styled-ABCA4" type="button" role="tab" aria-controls="ABCA4" aria-selected="false">ABCA4</button>
+        </li>
+    </ul>
+</div>
+<div id="default-styled-tab-content">
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-overallCR" role="tabpanel" aria-labelledby="overallCR-tab">
+    <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-white sm:p-8">
+                <div class="flex flex-col text-center " >
+                    <dt class="mb-2 text-2xl font-extrabold">100</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average duration of illness</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">100</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average age</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">100</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Average vision</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">100</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of presence of corneal opacity</dd>
+                </div>
+                <div class="flex flex-col text-center ">
+                    <dt class="mb-2 text-2xl font-extrabold">100</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Frequency of retina changes</dd>
+                </div>
+                <div class="flex flex-col text-center">
+                    <dt class="mb-2 text-2xl font-extrabold">100</dt>
+                    <dd class="text-gray-500 font-lora dark:text-gray-400">Total count</dd>
+                </div>
+            </dl>
+    </div>
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-CNGA3" role="tabpanel" aria-labelledby="CNGA3-tab">
+ 
+ </div>
+ <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-ABCA4" role="tabpanel" aria-labelledby="ABCA4-tab">
+       
+ </div>
+    </div>
+
+        </div>
+
+    </div>
+</div>
 
     {/* Top Section with Filters and Statistics */}
     <div className={styles.topSection}>
@@ -302,7 +592,7 @@ function Research() {
   </div>
 </div>
 
-    </>
+    </div>
   );
 }
 
