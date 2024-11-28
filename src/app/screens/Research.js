@@ -669,7 +669,7 @@ function Research() {
 
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-center rtl:text-right text-blue-100 dark:text-blue-100">
+    <table class="w-full text-sm text-center text-blue-100 dark:text-blue-100">
         <thead class="text-xs text-white uppercase font-poppins bg-bluegreen-70 border-b border-bluegreen-70 dark:text-white">
             <tr>
                 <th scope="col" class="px-6 py-3">
