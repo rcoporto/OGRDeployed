@@ -20,6 +20,7 @@
   
   /* Styling for the message text */
   .message {
+    font-family: 'Lora';
     font-size: 1.2rem;
     margin-top: 1rem;
     color: #666; /* Slightly lighter color for the message */

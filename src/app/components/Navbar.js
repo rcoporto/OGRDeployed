@@ -268,7 +268,8 @@ return (
 href={link.href}
 key={link.key}
 className={`${styles.link} ${
-pathname === link.href ? styles.active : ""
+// pathname === link.href ? styles.active : ""
+pathname === link.href ? "bg-gradient-to-r from-bluegreen-70 via-bluegreen-1 to-lightbluegreen-5" : ""
 }`} // Add active class if the current path matches the link's href
 >
 {link.label}

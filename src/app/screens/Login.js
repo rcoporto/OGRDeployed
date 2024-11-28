@@ -136,6 +136,7 @@
 
 "use client";
 
+import 'flowbite';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Next.js router
 import { useAuth } from '../context/authContext'; // Custom auth context for Firestore login
@@ -143,8 +144,10 @@ import styles from './Login.module.css';
 import Navbar from '../components/Navbar';
 import { useEffect } from 'react';
 import Image from 'next/image';
+import { initFlowbite } from 'flowbite';
 
 function Login() {
+  
   const { login } = useAuth(); // Custom login function from authContext
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

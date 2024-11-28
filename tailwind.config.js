@@ -19,6 +19,10 @@ module.exports = {
         lora: ['var(--font-lora)'],
       },
       colors: {
+        lightbluegreen: {
+          10: "#AACFDA",
+          5: "#C6DFE6",
+        },
         bluegreen: {
           90: "#16262E",
           80: "#2E4756",
