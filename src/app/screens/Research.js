@@ -158,7 +158,76 @@ function Research() {
           </div>
 
   {/* Main Content Area */}
-  <div className={styles.mainContent}>
+  <div class="flex flex-col">
+
+    <div class="text-justify mb-8 grid md:grid-cols-3 gap-6">
+
+      <div>
+      
+          <div class="flex items-center justify-self-center">
+          <label class="block ml-6 mr-2 text-left text-sm text-nowrap font-medium text-bluegreen-90">Age Range</label>
+                    <input
+                      type="number"
+                      placeholder="Min age"
+                      class="block px-2.5 py-2.5 w-max text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70"
+                      value={ageRange[0]}
+                      onChange={(e) => setAgeRange([+e.target.value, ageRange[1]])}
+                    />
+
+            <span class="mx-4 text-sm text-gray-60">to</span>
+
+            <input
+                      type="number"
+                      placeholder="Max age"
+                      class="block px-2.5 py-2.5 w-max text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70"
+                      value={ageRange[1]}
+                      onChange={(e) => setAgeRange([ageRange[0], +e.target.value])}
+                    />
+
+          </div>
+
+      </div>
+
+      <div>
+      <div class="flex items-center justify-self-center">
+      <label class="block mr-2 text-left text-sm font-medium text-bluegreen-90">Region</label>
+
+          <select
+            class="block px-2.5 py-2.5 w-max text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+            value={regionFilter}
+            onChange={(e) => setRegionFilter(e.target.value)}
+          >
+            <option value="">Select Region</option>
+            <option value="Region 1">Region 1</option>
+            <option value="Region 2">Region 2</option>
+            <option value="Region 3">Region 3</option>
+            <option value="Region 4">Region 4</option>
+            <option value="Region 5">Region 5</option>
+            <option value="Region 6">Region 6</option>
+            <option value="Region 7">Region 7</option>
+            <option value="Region 8">Region 8</option>
+            <option value="Region 9">Region 9</option>
+            <option value="Region 10">Region 10</option>
+            <option value="Region 11">Region 11</option>
+            <option value="Region 12">Region 12</option>
+            <option value="NCR">NCR</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-self-center">
+      <label class="block ml-6 mr-2 text-left text-sm text-nowrap font-medium text-bluegreen-90">Reset Filters</label>
+      <button type="button" class="text-blue-700 bg-pink-1 hover:bg-pink-10 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-20 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center" onClick={resetFilters}>
+      <svg class="w-4 h-4 text-pink-50" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
+</svg>
+<span class="sr-only">Refresh</span>
+</button>
+</div>
+      </div>
+
+    </div>
 
   <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     {/* <div class="sm:hidden">
@@ -481,7 +550,7 @@ function Research() {
         <button className={styles.resetButton} onClick={resetFilters}>Reset Filters</button>
 
         {/* Age Range Filter */}
-        <div className={styles.ageRange}>
+        {/* <div className={styles.ageRange}>
           <h3 className={styles.subheading}>Age Range</h3>
           <input
             type="number"
@@ -497,10 +566,10 @@ function Research() {
             value={ageRange[1]}
             onChange={(e) => setAgeRange([ageRange[0], +e.target.value])}
           />
-        </div>
+        </div> */}
 
         {/* Region Filter */}
-        <div className={styles.regionFilter}>
+        {/* <div className={styles.regionFilter}>
           <h3 className={styles.subheading}>Region</h3>
           <select
             className={styles.select}
@@ -522,7 +591,7 @@ function Research() {
             <option value="Region 12">Region 12</option>
             <option value="NCR">NCR</option>
           </select>
-        </div>
+        </div> */}
       </div>
 
       {/* Statistics Section */}
@@ -536,8 +605,13 @@ function Research() {
       </div>
     </div>
 
+    
+
+
+
+
     {/* Table Section */}
-    <table className={styles.table}>
+    {/* <table className={styles.table}>
       <thead>
         <tr>
           <th>Registry Number</th>
@@ -588,7 +662,110 @@ function Research() {
           </tr>
         ))}
       </tbody>
+    </table> */}
+
+
+
+
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-center rtl:text-right text-blue-100 dark:text-blue-100">
+        <thead class="text-xs text-white uppercase font-poppins bg-bluegreen-70 border-b border-bluegreen-70 dark:text-white">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Registry Number
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Sex
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Birthdate
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Age
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Region
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Chief Complaint
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Duration of Blurring
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Family Member Disease
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Siblings Disease Count
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    ERG Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    ERG Result
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Diagnosis
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Variants
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Right Eye Vision
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Left Eye Vision
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Cornea (Right)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Cornea (Left)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Retina (Right)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Retina (Left)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Genetic Testing Date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {filteredData.map((item, index) => (
+          <tr key={index} class="bg-gray-10 border-b border-blue-400 hover:bg-bluegreen-1">
+            <td class="px-6 py-4 font-medium font-lora text-bluegreen-90 whitespace-nowrap">{item.registryNumber}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap">{item.sex}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap">{item.birthdate}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.age}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.region}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.chiefComplaint}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.durationBlurring}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.familyMemberDisease}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.siblingsDiseaseCount}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.ergDate}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.ergResult}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.diagnosis}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.variants.join(', ')}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.rightEye}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.leftEye}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.corneaRight}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.corneaLeft}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.retinaRight}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.retinaLeft}</td>
+            <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap text-center">{item.geneticTestingDate}</td>
+          </tr>
+        ))}
+        </tbody>
     </table>
+</div>
+
+
+
+
   </div>
 </div>
 
