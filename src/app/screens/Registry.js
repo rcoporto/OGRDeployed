@@ -256,7 +256,7 @@ const Registry = () => {
                     name="birthdate" 
                     value={formData.birthdate} 
                     onChange={handleChange} 
-                    class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                    class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
                   />        
                 </div>
                 
@@ -412,7 +412,7 @@ const Registry = () => {
                       name="ergDate" 
                       value={formData.ergDate} 
                       onChange={handleChange} 
-                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
                     />        
                   </div>
                   
@@ -423,7 +423,7 @@ const Registry = () => {
                       name="ergResult" 
                       value={formData.ergResult} 
                       onChange={handleChange} 
-                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
                     />        
                   </div>
                 </div>
@@ -599,7 +599,7 @@ const Registry = () => {
                       name="geneticTestingDate" 
                       value={formData.geneticTestingDate} 
                       onChange={handleChange} 
-                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
                     />     
                 </div>
 
