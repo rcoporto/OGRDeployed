@@ -697,7 +697,6 @@ import styles from './Families.module.css';
 import FamiliesSection from '../components/FamiliesSection';
 import { db } from '../../../firebase/firebase'; // Adjust this path as needed
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import ActivitiesTable from '../components/ActivitiesTable';
 
 function Families({ isAdmin }) {
   const [events, setEvents] = useState([]);
@@ -854,8 +853,8 @@ function Families({ isAdmin }) {
           <div className={styles.overlay}>
             <div className={styles.overlayContent}>
               <button className={styles.closeButton} onClick={() => setShowDetails(null)}>X</button>
-              <h3>Event Details</h3>
-              <p>{filteredEvents.find(event => event.id === showDetails).details}</p>
+              <h3 class="text-lightbluegreen-5 text-xl font-bold mb-3">Event Details</h3>
+              <p class="font-lora">{filteredEvents.find(event => event.id === showDetails).details}</p>
             </div>
           </div>
         )}
@@ -864,39 +863,58 @@ function Families({ isAdmin }) {
           <div className={styles.overlay}>
             <div className={styles.overlayContent}>
               <button className={styles.closeButton} onClick={() => setShowForm({ type: null, event: null })}>X</button>
-              <h3>{showForm.type === 'add' ? 'Add Event' : 'Edit Event'}</h3>
+              <h3 class="text-lightbluegreen-5 text-xl font-bold mb-5">{showForm.type === 'add' ? 'Add Event' : 'Edit Event'}</h3>
               <form onSubmit={handleSubmit}>
-                <label>Event Title:</label>
+                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-1">Event Title:</label>
                 <input
                   type="text"
                   value={showForm.event.title}
                   onChange={(e) => setShowForm({ ...showForm, event: { ...showForm.event, title: e.target.value } })}
+                  class="block px-2.5 py-2.5 mb-3 w-full font-lora text-sm text-[#EEEEEE] bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
                   required
                 />
-                <label>Date:</label>
-                <input
-                  type="date"
-                  value={showForm.event.date}
-                  onChange={(e) => setShowForm({ ...showForm, event: { ...showForm.event, date: e.target.value } })}
-                  required
-                />
-                <label>Category:</label>
-                <select
-                  value={showForm.event.category}
-                  onChange={(e) => setShowForm({ ...showForm, event: { ...showForm.event, category: e.target.value } })}
-                  required
-                >
-                  <option value="Retinitis Pigmentosa">Retinitis Pigmentosa</option>
-                  <option value="Stargardt Disease">Stargardt Disease</option>
-                  <option value="Cone Rod Dystrophy">Cone Rod Dystrophy</option>
-                </select>
-                <label>Details:</label>
+
+                <div class="z-10 mb-2 grid md:grid-cols-2 gap-4">
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-1">Date:</label>
+                    <input
+                      type="date"
+                      value={showForm.event.date}
+                      onChange={(e) => setShowForm({ ...showForm, event: { ...showForm.event, date: e.target.value } })}
+                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    />
+                  </div>
+
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-1">Category:</label>
+                    <select
+                      value={showForm.event.category}
+                      onChange={(e) => setShowForm({ ...showForm, event: { ...showForm.event, category: e.target.value } })}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="Retinitis Pigmentosa">Retinitis Pigmentosa</option>
+                      <option value="Stargardt Disease">Stargardt Disease</option>
+                      <option value="Cone Rod Dystrophy">Cone Rod Dystrophy</option>
+                    </select>
+                  </div>
+                </div>
+
+                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-1">Details:</label>
                 <textarea
                   value={showForm.event.details}
                   onChange={(e) => setShowForm({ ...showForm, event: { ...showForm.event, details: e.target.value } })}
+                  wrap="hard" 
+                  rows={2} 
+                  cols={50}
+                  class="block px-2.5 pb-2.5 pt-4 w-full font-lora text-sm text-[#EEEEEE] bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer" 
                   required
                 />
-                <button type="submit">Save</button>
+                
+                <div class="mt-6 mb-2 mx-20 text-center">
+                  <button type="submit" class="text-white bg-pink-20 hover:bg-pink-50 focus:ring-4 focus:ring-pink-1 font-medium rounded-lg text-base px-6 py-3 text-center justify-items-center w-max">Save</button>
+                </div>
               </form>
             </div>
           </div>
