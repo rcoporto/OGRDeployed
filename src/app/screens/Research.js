@@ -286,10 +286,17 @@ useEffect(() => {
 
     </div>
 
+ 
+
     <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+   
       <div class="border-t border-gray-200">
 
         <div class="inline-flex m-8 rounded-md shadow-sm" role="group">
+
+        <p style={{ color: '#3d7a89' }}>⠀Double-click to access variants: ⠀</p>
+
+
           <button type="button" id="dropdownRPButton" class="px-4 py-2 text-sm font-medium text-pink-30 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-pink-50 focus:z-10 focus:ring-2 focus:ring-pink-10 focus:text-pink-20" data-dropdown-toggle="dropdownRP" onClick={() => setDiseaseFilter('Retinitis Pigmentosa')}>
             Retinitis Pigmentosa
           </button>

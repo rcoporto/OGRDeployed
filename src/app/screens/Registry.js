@@ -154,6 +154,7 @@ const Registry = () => {
       await addDoc(registryRef, formData);
   
       alert('Form submitted successfully!');
+      window.location.reload();
     } catch (error) {
       console.error('Error adding document: ', error);
       alert('There was an error submitting the form.');
