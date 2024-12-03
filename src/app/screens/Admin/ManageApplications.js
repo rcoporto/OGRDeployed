@@ -464,6 +464,7 @@ const ManageApplications = () => {
   };
 
   return (
+    <>
     <div
   className={styles.page}
   style={{
@@ -579,6 +580,7 @@ const ManageApplications = () => {
       </div>
     </div>
     </div>
+    </>
   );
 };
 

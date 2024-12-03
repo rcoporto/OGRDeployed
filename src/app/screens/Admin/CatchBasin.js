@@ -116,20 +116,22 @@ function CatchBasin() {
   };
 
   return (
+    <>
+
 <div
   className={styles.page}
-  style={{
-    backgroundImage: "url('/wavelines4.png')",
-    backgroundColor: "white",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed', 
-    minHeight: '100vh',
-    width: '100vw',
-  }}
+  // style={{
+  //   backgroundImage: "url('/wavelines4.png')",
+  //   backgroundColor: "white",
+  //   backgroundSize: 'cover',
+  //   backgroundPosition: 'center',
+  //   backgroundRepeat: 'no-repeat',
+  //   backgroundAttachment: 'fixed', 
+  //   minHeight: '100vh',
+  //   width: '100vw',
+  // }}
 >
-    <Navbar />
+<Navbar />
     <Sidebar />
       <div className={styles.container}>
         <div className={styles.content}>
@@ -228,6 +230,7 @@ function CatchBasin() {
     </div>
    
     </div>
+    </>
   );
 }
 
