@@ -123,7 +123,10 @@
         if (selectedUser) {
           // Update existing user in Firebase using the document ID as reference
           await updateDoc(doc(db, "registeredUsers", selectedUser.id), userData);
-          setUsers(users.map(user => (user.id === selectedUser.id ? { ...user, ...userData } : user)));
+          // setUsers(users.map(user => (user.id === selectedUser.id ? { ...user, ...userData } : user)));
+          setUsers(users.map(user => (user.id === selectedUser.id 
+            ? { ...user, ...userData, approvedAt: format(new Date(), 'MM/dd/yyyy') } 
+            : user)));
         } else {
           // Add new user to Firebase and use the generated document ID
           const newUserDoc = doc(collection(db, "registeredUsers"));
@@ -224,7 +227,7 @@
                 <th>User Type</th>
                 <th>Registry Access</th>
                 <th>Research Access</th>
-                <th>Create Date</th>
+                <th>Latest Update</th>
                 <th>Proof of Identity</th>
                 <th>Action</th>
               </tr>

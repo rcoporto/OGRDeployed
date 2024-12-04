@@ -171,7 +171,7 @@ function Login() {
     e.preventDefault();
     try {
       await login(email, password); // Call custom login to authenticate against Firestore
-      alert("account is valid");
+      //alert("account is valid");
       router.push('/'); // Redirect to dashboard after successful login
     } catch (error) {
       console.error("Error logging in:", error);
