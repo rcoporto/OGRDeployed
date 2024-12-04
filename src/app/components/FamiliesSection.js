@@ -11,7 +11,7 @@ const FamiliesSection = () => {
             width={1800}
             className='opacity-20 top-0 absolute z-0'
           />
-            <div class="grid md:grid-cols-3 gap-8 mx-20">
+            <div class="grid md:grid-cols-3 gap-20 mx-20">
                 <div class="my-32 mx-20 z-10">                       
                     
                     <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-bluegreen-90 md:text-5xl lg:text-6xl">How to <span class="text-bluegreen-75">Donate</span></h1>
@@ -19,9 +19,9 @@ const FamiliesSection = () => {
 
                 </div>
 
-                <div class="w-full max-w-sm p-4 my-8 bg-white border border-gray-200 rounded-xl shadow sm:p-8 z-10">
+                <div class="w-full max-w-md p-4 my-8 bg-white border border-gray-200 rounded-xl shadow sm:p-8 md:p-9 z-10">
                     <div class="flex items-center justify-between mb-4">
-                        <h5 class="text-xl font-bold leading-none text-pink-30">Example Bank</h5>
+                        <h5 class="text-2xl font-bold leading-none text-pink-30">Example Bank</h5>
                     </div>    
                     <div class="flow-root">
                             <ul role="list" class="divide-y divide-gray-200">
@@ -29,7 +29,7 @@ const FamiliesSection = () => {
                                     <div class="flex items-center">
                                         
                                         <div class="flex-1 min-w-0 ms-4">
-                                            <p class="text-sm font-medium text-bluegreen-80 truncate">
+                                            <p class="text-base font-medium text-bluegreen-80 truncate">
                                                 Account Name
                                             </p>
                                             <p class="text-sm text-gray-500 truncate font-lora">
@@ -43,7 +43,7 @@ const FamiliesSection = () => {
                                     <div class="flex items-center">
                                     
                                         <div class="flex-1 min-w-0 ms-4">
-                                            <p class="text-sm font-medium text-bluegreen-80 truncate">
+                                            <p class="text-base font-medium text-bluegreen-80 truncate">
                                                 Account Number
                                             </p>
                                             <p class="text-sm text-gray-500 truncate font-lora">
@@ -57,7 +57,7 @@ const FamiliesSection = () => {
                                     <div class="flex items-center">
                                         
                                         <div class="flex-1 min-w-0 ms-4">
-                                            <p class="text-sm font-medium text-bluegreen-80 truncate">
+                                            <p class="text-base font-medium text-bluegreen-80 truncate">
                                                 SWIFT Code
                                             </p>
                                             <p class="text-sm text-gray-500 truncate font-lora">
@@ -93,11 +93,11 @@ const FamiliesSection = () => {
                     </div>
                 </div>
 
-                <div class="my-28 ml-6 z-10">
+                <div class="my-28 ml-6 z-10 text-center justify-items-center">
                     <Image
                     src="/qrsample.png"
-                    height={300}
-                    width={300}
+                    height={225}
+                    width={225}
                     alt="QR Sample"
                     />
 

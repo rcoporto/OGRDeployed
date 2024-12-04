@@ -171,7 +171,7 @@ const Registry = () => {
           <h1 class="text-center mb-6 text-3xl font-extrabold leading-none tracking-tight text-bluegreen-80 md:text-4xl lg:text-5xl">Registry</h1>
         </div>
 
-        <div class="mb-10 mx-4 text-center justify-items-center z-10 grid md:grid-cols-2 gap-2">
+        <div class="mb-10 mx-28 text-center justify-items-center z-10 grid md:grid-cols-2 gap-2">
 
           <div class="w-screen max-w-screen-sm p-4 bg-white border justify-self-center border-gray-200 rounded-lg shadow sm:p-8 md:p-12">
             <form class="space-y-4" action="#" onSubmit={handleSubmit}>

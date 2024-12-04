@@ -292,9 +292,11 @@ useEffect(() => {
    
       <div class="border-t border-gray-200">
 
+        <span class="text-bluegreen-70 ml-4">⠀Double-click to access variants: ⠀</span>
+
         <div class="inline-flex m-8 rounded-md shadow-sm" role="group">
 
-        <p style={{ color: '#3d7a89' }}>⠀Double-click to access variants: ⠀</p>
+        {/* <p style={{ color: '#3d7a89' }}>⠀Double-click to access variants: ⠀</p> */}
 
 
           <button type="button" id="dropdownRPButton" class="px-4 py-2 text-sm font-medium text-pink-30 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-pink-50 focus:z-10 focus:ring-2 focus:ring-pink-10 focus:text-pink-20" data-dropdown-toggle="dropdownRP" onClick={() => setDiseaseFilter('Retinitis Pigmentosa')}>
@@ -545,7 +547,7 @@ useEffect(() => {
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-center text-blue-100 dark:text-blue-100">
-        <thead class="text-xs text-white uppercase font-poppins bg-bluegreen-70 border-b border-bluegreen-70 dark:text-white">
+        <thead class="text-xs text-white uppercase font-poppins bg-bluegreen-70 border-b border-bluegreen-70">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     Registry Number
@@ -611,7 +613,7 @@ useEffect(() => {
         </thead>
         <tbody>
         {filteredData.map((item, index) => (
-          <tr key={index} class="bg-gray-10 border-b border-blue-400 hover:bg-bluegreen-1">
+          <tr key={index} class="bg-gray-10 border-b border-lightbluegreen-10 hover:bg-bluegreen-1">
             <td class="px-6 py-4 font-medium font-lora text-bluegreen-90 whitespace-nowrap">{item.registryNumber}</td>
             <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap">{item.sex}</td>
             <td class="px-6 py-4 font-lora text-bluegreen-90 text-nowrap">{item.birthdate}</td>
