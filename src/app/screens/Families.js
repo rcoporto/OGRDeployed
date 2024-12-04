@@ -814,8 +814,8 @@ function Families({ isAdmin }) {
             <tbody className="cursor-pointer">
               {filteredEvents.map(event => (
                 <tr className="bg-white border-b hover:bg-gray-50 text-center" key={event.id} onClick={() => setShowDetails(showDetails === event.id ? null : event.id)}>
-                  <td className="font-lora">{formatDate(event.date)}</td>
-                  <td className="font-lora">{event.title}</td>
+                  <td className="px-6 py-4 text-center font-lora">{formatDate(event.date)}</td>
+                  <td className="px-6 py-4 text-center font-lora">{event.title}</td>
                   {isAdmin && (
                     <td className="px-6 py-4 text-center">
                       <button onClick={(e) => { e.stopPropagation(); handleEditEvent(event); }} className="text-white bg-gradient-to-r to-bluegreen-1 from-bluegreen-80 transition-all duration-300 cursor-pointer hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-bluegreen-1 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2">
@@ -829,23 +829,22 @@ function Families({ isAdmin }) {
                 </tr>
               ))}
             </tbody>
-
-            <tfoot>
-              <tr class="bg-white border-b hover:bg-gray-50 text-center">
-              <th scope="row" class="px-6 py-3 text-base">
-                      {isAdmin && (
-                              <button onClick={handleAddEvent} class="text-white bg-bluegreen-1 cursor-pointer hover:bg-bluegreen-60 focus:ring-4 focus:outline-none focus:ring-bluegreen-60 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2">
-                                <svg class="w-5.5 h-5.5 text-bluegreen-75" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
-                                </svg>
-                                Add Event
-                              </button>
-                            )}
-                            </th>
-                            <td class="px-6 py-3"></td>
-                            <td class="px-6 py-3"></td>
-                        </tr>
-                    </tfoot>
+            {isAdmin && (
+              <tfoot>
+                <tr class="bg-white border-b hover:bg-gray-50 text-center">
+                <th scope="row" class="px-6 py-3 text-base">
+                <button onClick={handleAddEvent} class="text-white bg-bluegreen-1 cursor-pointer hover:bg-bluegreen-60 focus:ring-4 focus:outline-none focus:ring-bluegreen-60 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2">
+                  <svg class="w-5.5 h-5.5 text-bluegreen-75" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                  </svg>
+                  Add Event
+                </button>
+                </th>
+                <td class="px-6 py-3"></td>
+                <td class="px-6 py-3"></td>
+                </tr>
+              </tfoot>
+            )}
           </table>
         </div>
 
