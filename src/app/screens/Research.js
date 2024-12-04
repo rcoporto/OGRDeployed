@@ -297,13 +297,13 @@ useEffect(() => {
         <p style={{ color: '#3d7a89' }}>⠀Double-click to access variants: ⠀</p>
 
 
-          <button type="button" id="dropdownRPButton" class="px-4 py-2 text-sm font-medium text-pink-30 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-pink-50 focus:z-10 focus:ring-2 focus:ring-pink-10 focus:text-pink-20" data-dropdown-toggle="dropdownRP" onClick={() => setDiseaseFilter('Retinitis Pigmentosa')}>
+          <button type="button" id="dropdownRPButton" class="px-4 py-2 text-sm font-medium text-pink-30 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-pink-50 focus:z-10 focus:ring-2 focus:ring-pink-10 focus:text-pink-20" data-dropdown-toggle="dropdownRP" onClick={() => {setDiseaseFilter('Retinitis Pigmentosa');setVariantFilter('');}}>
             Retinitis Pigmentosa
           </button>
-          <button type="button" id="dropdownSDButton" class="px-4 py-2 text-sm font-medium text-pink-30 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-pink-50 focus:z-10 focus:ring-2 focus:ring-pink-10 focus:text-pink-20" data-dropdown-toggle="dropdownSD" onClick={() => setDiseaseFilter('Stargardt Disease')}>
+          <button type="button" id="dropdownSDButton" class="px-4 py-2 text-sm font-medium text-pink-30 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-pink-50 focus:z-10 focus:ring-2 focus:ring-pink-10 focus:text-pink-20" data-dropdown-toggle="dropdownSD" onClick={() => {setDiseaseFilter('Stargardt Disease');setVariantFilter('');}}>
             Stargardt Disease
           </button>
-          <button type="button" id="dropdownCRButton" class="px-4 py-2 text-sm font-medium text-pink-30 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-pink-50 focus:z-10 focus:ring-2 focus:ring-pink-10 focus:text-pink-20" data-dropdown-toggle="dropdownCR" onClick={() => setDiseaseFilter('Cone Rod Dystrophy')}>
+          <button type="button" id="dropdownCRButton" class="px-4 py-2 text-sm font-medium text-pink-30 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-pink-50 focus:z-10 focus:ring-2 focus:ring-pink-10 focus:text-pink-20" data-dropdown-toggle="dropdownCR" onClick={() => {setDiseaseFilter('Cone Rod Dystrophy');setVariantFilter('');}}>
             Cone Rod Dystrophy
           </button>
         </div>

@@ -44,33 +44,33 @@ const Registry = () => {
   });
 
   //for login/access checking
-  // const user = useAuth(); // Destructure logout directly
-  // const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
-  // const [hasRegistryAccess, setHasRegistryAccess] = useState(false); // Track registry access
-  // const router = useRouter();
+  const user = useAuth(); // Destructure logout directly
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
+  const [hasRegistryAccess, setHasRegistryAccess] = useState(false); // Track registry access
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   try{
-  //   if (user && user.user.registry === true) {
-  //     setIsAuthenticated(true);
-  //     setHasRegistryAccess(true);
-  //   } else {
-  //     setIsAuthenticated(false);
-  //     setHasRegistryAccess(false);
-  //     //alert("You are not authorized!");
-  //     //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
-  //     router.push('/invalid')
+  useEffect(() => {
+    try{
+    if (user && user.user.registry === true) {
+      setIsAuthenticated(true);
+      setHasRegistryAccess(true);
+    } else {
+      setIsAuthenticated(false);
+      setHasRegistryAccess(false);
+      //alert("You are not authorized!");
+      //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      router.push('/invalid')
       
-  //   }
-  // }
-  // catch{
-  //   setIsAuthenticated(false);
-  //     setHasRegistryAccess(false);
-  //     //alert("You are not authorized!");
-  //     //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
-  //     router.push('/invalid')
-  // }
-  // }, []);
+    }
+  }
+  catch{
+    setIsAuthenticated(false);
+      setHasRegistryAccess(false);
+      //alert("You are not authorized!");
+      //router.push('/login?message=no_access'); // Redirect to login page if unauthenticated
+      router.push('/invalid')
+  }
+  }, []);
 
   const handleChange = (e) => {
   const { name, value, type } = e.target;
