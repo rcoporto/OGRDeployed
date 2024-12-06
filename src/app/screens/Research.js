@@ -216,7 +216,7 @@ useEffect(() => {
  
   <div class="flex flex-col">
 
-    <div class="text-justify mb-8 grid md:grid-cols-3 gap-6">
+    <div class="text-justify mb-8 mx-20 grid md:grid-cols-3 gap-6">
 
       <div>
         <div class="flex items-center justify-self-center">
@@ -273,7 +273,7 @@ useEffect(() => {
       </div>
 
       <div>
-        <div class="flex items-center justify-self-center">
+        <div class="flex items-center justify-self-center float-end">
           <label class="block ml-6 mr-2 text-left text-sm text-nowrap font-medium text-bluegreen-90">Reset Filters</label>
             <button type="button" class="text-blue-700 bg-pink-1 hover:bg-pink-10 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-20 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center" onClick={resetFilters}>
               <svg class="w-4 h-4 text-pink-50" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

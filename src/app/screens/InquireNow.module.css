@@ -2,8 +2,8 @@
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
-    /* min-height: 100vh; */
-    min-height: 150%;
+    min-height: 100vh;
+    /* min-height: 150%; */
     /* max-height: 200vh; */
     background-color: #F8F8FF;
     background-position: top;

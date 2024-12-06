@@ -8,14 +8,14 @@ export default function Home() {
     <div className={styles.page}>
        <title>Ocular Genetic Registry</title>
       <Navbar/>
-        <div className={styles.waveImage}>
+        {/* <div className={styles.waveImage}>
           <Image
             src="/wavelines.png" 
             alt="Wave Lines" 
             height={500} 
             width={1800}
           />
-        </div>
+        </div> */}
       <main className={styles.main}>
         <LandingSection />
         

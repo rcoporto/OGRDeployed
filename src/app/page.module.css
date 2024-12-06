@@ -4,11 +4,13 @@
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
-  min-height: fit-content;
+  /* min-height: fit-content; */
+  min-height: 100vh;
   background-color: #F8F8FF;
-  /* background-image: url('../../public/wavelines.png'); */
+  background-image: url('/wavelines.png');
   background-position: top;
   background-size: contain;
+  background-repeat: no-repeat; 
 }
 
 .main {
@@ -22,10 +24,10 @@
   z-index: 1;
 }
 
-.waveImage {
+/* .waveImage {
   position: absolute;
   float: top;
-}
+} */
 
 /* .heading {
   font-size: 2.5rem;
