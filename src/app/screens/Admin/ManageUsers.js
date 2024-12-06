@@ -292,7 +292,9 @@
   <option value="">Select User Type</option>
   <option value="Doctor">Doctor</option>
   <option value="Nurse">Nurse</option>
+  <option value="Researcher">Researcher</option>
   <option value="Admin">Admin</option>
+  
 </select>
 
                   <label>Registry Access:</label>
