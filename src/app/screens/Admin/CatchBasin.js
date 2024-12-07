@@ -103,7 +103,7 @@ function CatchBasin() {
   return (
     <>
       <div className={styles.page}>
-        <Navbar />
+        <Navbar /> <br />
         <Sidebar />
 
         <div className={styles.container}>

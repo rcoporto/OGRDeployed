@@ -79,19 +79,32 @@
   gap: 15px;
   margin-bottom: 15px;
 }
-  
+
 .stats div {
   padding: 8px 12px;
   border-radius: 15px;
   cursor: pointer;
-  background-color: #e6f3ff; /* Blue tint */
-  color: #006699;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
-  
+
+.stats div:nth-child(1) { /* Total */
+  background-color: #e6f3ff; /* Blue tint */
+  color: #006699;
+}
+
+.stats div:nth-child(2) { /* Open */
+  background-color: #eafbea; /* Light green */
+  color: #28a745; /* Green */
+}
+
+.stats div:nth-child(3) { /* Closed */
+  background-color: #fcebea; /* Light red */
+  color: #dc3545; /* Red */
+}
+
 .stats div:hover {
-  background-color: #d0ebff;
+  opacity: 0.8;
 }
   
 /* Table container */

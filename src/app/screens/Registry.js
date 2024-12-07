@@ -146,7 +146,7 @@ const Registry = () => {
       alert('There was an error submitting the form.');
     }
   };
-
+  
   return (
     <>
       {/* Container div for entire page */}

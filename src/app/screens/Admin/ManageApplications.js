@@ -190,7 +190,7 @@ const ManageApplications = () => {
           width: '100vw',
         }}
       >
-        <Navbar />
+        <Navbar /> <br />
         <div className={styles.container}>
           <Sidebar />
           <div className={styles.content}>

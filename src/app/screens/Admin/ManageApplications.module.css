@@ -7,7 +7,7 @@
   background-repeat: no-repeat; /* Do not repeat the image */
   min-height: 100vh; /* Ensure it covers the full height of the viewport */
   margin-left: -10px;
-  margin-top: -20px;
+  /* margin-top: -20px; */
 }
   
 .content {
@@ -56,26 +56,63 @@
 }
 
 /* Stats Display */
+
+/* Stats Display */
 .stats {
   display: flex;
   gap: 15px;
   margin-bottom: 15px;
 }
-  
+
 .stats button {
   padding: 8px 12px;
   border-radius: 15px;
-  background-color: #e6f3ff; /* Blue tint */
-  color: #006699;
   font-weight: bold;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.stats button:hover {
-  background-color: #d0ebff;
+/* All: Neutral Blue */
+.stats button:nth-child(1) {
+  background-color: #e6f3ff; /* Light blue */
+  color: #006699; /* Blue text */
 }
+
+.stats button:nth-child(1):hover {
+  background-color: #d0ebff; /* Darker blue on hover */
+}
+
+/* Pending: Yellow */
+.stats button:nth-child(2) {
+  background-color: #fff3cd; /* Light yellow */
+  color: #856404; /* Yellowish-brown text */
+}
+
+.stats button:nth-child(2):hover {
+  background-color: #ffecb5; /* Darker yellow on hover */
+}
+
+/* Approved: Green */
+.stats button:nth-child(3) {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Dark green text */
+}
+
+.stats button:nth-child(3):hover {
+  background-color: #c3e6cb; /* Darker green on hover */
+}
+
+/* Denied: Red */
+.stats button:nth-child(4) {
+  background-color: #f8d7da; /* Light red */
+  color: #721c24; /* Dark red text */
+}
+
+.stats button:nth-child(4):hover {
+  background-color: #f5c6cb; /* Darker red on hover */
+}
+
   
 /* Applications Table */
 /* Table container */

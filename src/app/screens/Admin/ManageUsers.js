@@ -183,7 +183,7 @@ function ManageUsers() {
         width: '100vw',
       }}
     >
-      <Navbar />
+      <Navbar /> <br />
       <Sidebar />
       <div className={styles.container}>
         <h1 className={styles.title}>Manage Users</h1>

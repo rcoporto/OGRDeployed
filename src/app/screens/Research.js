@@ -120,6 +120,31 @@ function Research() {
     setFilteredData(data); // Reset filteredData to initial data
   };
 
+
+  const getMostFrequentValue = (arr) => {
+    const frequency = {};
+    let maxFreq = 0;
+    let mode = null;
+  
+    arr.forEach((value) => {
+      if (value != null) {
+        frequency[value] = (frequency[value] || 0) + 1;
+        if (frequency[value] > maxFreq) {
+          maxFreq = frequency[value];
+          mode = value;
+        }
+      }
+    });
+  
+    return mode;
+  };
+  
+  const frequentBlurringDuration = getMostFrequentValue(
+    filteredData.map((item) => item.durationBlurring)
+  );
+
+  
+
   return (
     <>
       {/* Container div for entire page */}
@@ -276,10 +301,13 @@ function Research() {
 
               <div class="p-4 mx-4 mb-4 bg-gray-50 rounded-lg md:p-8" >
                 <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 sm:p-8">
-                  <div class="flex flex-col  text-center">
-                    <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">???</dt>
-                    <dd class="text-gray-500 font-lora">Average duration of illness</dd>
-                  </div>
+                  <div class="flex flex-col text-center">
+                      <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">
+                          {frequentBlurringDuration || 'N/A'}
+                      </dt>
+                  <dd class="text-gray-500 font-lora">Frequent duration of illness</dd>
+                </div>
+
                   <div class="flex flex-col  text-center">
                     <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">{averageAge.toFixed(2)}</dt>
                     <dd class="text-gray-500 font-lora">Average age</dd>
