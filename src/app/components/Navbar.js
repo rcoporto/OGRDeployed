@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "./Navbar.module.css";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "../context/authContext";
+import Image from "next/image";
 
 const Navbar = () => {
     const [userName, setUserName] = useState("");
@@ -44,7 +45,19 @@ const Navbar = () => {
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.logo}>Ocular Genetic Registry</div>
+            {/* <div className={styles.logo}>Ocular Genetic Registry</div> */}
+            <div className={styles.logo}>
+                <Link href={"/"}>
+                <Image
+                    src="/logo_transparent.png"
+                    alt="Logo"
+                    height={130}
+                    width={130}
+                    className='mx-8'
+                    
+                />
+                </Link>
+            </div>
             <ul className={styles.navLinks}>
                 {NAV_LINKS.map((link) => (
                     <Link
@@ -75,7 +88,7 @@ const Navbar = () => {
                             </button>
                         </div>
                     )}
-                {/* End of when logged in */}
+                    {/* End of when logged in */}
                 </div>
             )}
         </nav>

@@ -163,7 +163,7 @@ function Families({ isAdmin }) {
             <div className={styles.overlayContent}>
               <button className={styles.closeButton} onClick={() => setShowDetails(null)}>X</button>
               <h3 class="text-lightbluegreen-5 text-xl font-bold mb-3">Event Details</h3>
-              <p class="font-lora">{filteredEvents.find(event => event.id === showDetails).details}</p>
+              <p class="font-lora text-[#EEEEEE]">{filteredEvents.find(event => event.id === showDetails).details}</p>
             </div>
           </div>
         )}
