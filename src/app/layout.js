@@ -1,6 +1,6 @@
 import "./globals.css";
 import { poppins, lora } from "./fonts/font";
-import { AuthProvider } from ".//context/authContext"; // Import the AuthProvider
+import { AuthProvider } from "./context/authContext"; // Import the AuthProvider
 
 export const metadata = {
   title: "National Ocular Genetic Registry",

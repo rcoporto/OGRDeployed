@@ -74,3 +74,29 @@
 // }
 
 // export default MyApp;
+
+import { AuthProvider } from '../app/context/authContext';
+import ProtectedRoute from '../app/components/ProtectedRoute';
+import { useRouter } from 'next/router';
+
+const protectedRoutes = ['/registry', '/dashboard', '/profile', '/research'];
+
+function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const isProtectedRoute = protectedRoutes.includes(router.pathname);
+
+  return (
+    <AuthProvider>
+      {isProtectedRoute ? (
+        <ProtectedRoute>
+          <Component {...pageProps} />
+        </ProtectedRoute>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </AuthProvider>
+  );
+}
+
+export default MyApp;
+
