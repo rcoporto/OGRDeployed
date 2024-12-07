@@ -24,54 +24,6 @@
   z-index: 1;
 }
 
-/* .waveImage {
-  position: absolute;
-  float: top;
-} */
-
-/* .heading {
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.description {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.ctas {
-  display: flex;
-  gap: 1rem;
-}
-
-.primary, .secondary {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
-
-.primary {
-  background-color: #0070f3;
-  color: #fff;
-}
-
-.primary:hover {
-  background-color: #005bb5;
-}
-
-.secondary {
-  background-color: #eaeaea;
-  color: #333;
-}
-
-.secondary:hover {
-  background-color: #d4d4d4;
-} */
-
 .footer {
   background-color: #65697B;
   color: #fff;

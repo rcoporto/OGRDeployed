@@ -1,221 +1,216 @@
-  "use client";
+"use client";
+import Navbar from '../../components/Navbar';
+import React, { useState, useEffect, useRef } from 'react';
+import styles from './ManageUsers.module.css';
+import Sidebar from './Sidebar';
+import { collection, getDocs, updateDoc, doc, deleteDoc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from "../../../../firebase/firebase";
+import { format } from 'date-fns';
 
-  import Navbar from '../../components/Navbar';
-  import React, { useState, useEffect, useRef } from 'react';
-  import styles from './ManageUsers.module.css';
-  import Sidebar from './Sidebar';
-  import { collection, getDocs, updateDoc, doc, deleteDoc, getDoc, setDoc } from 'firebase/firestore';
-  import { db } from "../../../../firebase/firebase";
-  import { format } from 'date-fns';
+// To check for valid access
+import { useAuth } from '../../context/authContext'; // Ensure this is imported correctly
+import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
 
-  //to check for valid access
-  import { useAuth } from '../../context/authContext'; // Ensure this is imported correctly
-  import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
+function ManageUsers() {
+  const [users, setUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [userTypeFilter, setUserTypeFilter] = useState('');
+  const [accessTypeFilter, setAccessTypeFilter] = useState('');
+  const [actionMenuVisible, setActionMenuVisible] = useState(null);
+  const [actionMenuPosition, setActionMenuPosition] = useState({ top: 0, left: 0 });
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    id: '', name: '', email: '', password: '', contact: '', userType: '',
+    registry: false, research: false, approvedAt: '', identity: ''
+  });
+  const actionMenuRef = useRef(null);
 
-  function ManageUsers() {
-    const [users, setUsers] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
-    const [userTypeFilter, setUserTypeFilter] = useState('');
-    const [accessTypeFilter, setAccessTypeFilter] = useState('');
-    const [actionMenuVisible, setActionMenuVisible] = useState(null);
-    const [actionMenuPosition, setActionMenuPosition] = useState({ top: 0, left: 0 });
-    const [selectedUser, setSelectedUser] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [formData, setFormData] = useState({ 
-      id: '', name: '', email: '', password: '', contact: '', userType: '', 
-      registry: false, research: false, approvedAt: '', identity: '' 
-    });
-    const actionMenuRef = useRef(null);
-
-    //for login/access checking
+  // For login/access checking
   const user = useAuth(); // Destructure logout directly
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
   const [hasAdminAccess, setHasAdminAccess] = useState(false); // Track research access
   const router = useRouter();
-  //check if admin
+
+  // Check if admin
   useEffect(() => {
-    try{
-    if (user && user.user.userType === "Admin") {
-      setIsAuthenticated(true);
-      setHasAdminAccess(true);
-    } else {
+    try {
+      if (user && user.user.userType === "Admin") {
+        setIsAuthenticated(true);
+        setHasAdminAccess(true);
+      } else {
+        setIsAuthenticated(false);
+        setHasAdminAccess(false);
+        router.push('/invalid')
+
+      }
+    }
+    catch {
       setIsAuthenticated(false);
       setHasAdminAccess(false);
       router.push('/invalid')
-      
     }
-  }
-  catch{
-    setIsAuthenticated(false);
-      setHasAdminAccess(false);
-      router.push('/invalid')
-  }
   }, []);
 
-    // Fetch users from Firebase
-    useEffect(() => {
-      const fetchUsers = async () => {
-        const usersCollection = collection(db, "registeredUsers");
-        const usersSnapshot = await getDocs(usersCollection);
-        const usersList = usersSnapshot.docs.map(doc => {
-          const data = doc.data();
-          return {
-            id: doc.id,
-            ...data,
-            approvedAt: data.approvedAt 
-              ? format(new Date(data.approvedAt.seconds * 1000), 'MM/dd/yyyy') 
-              : "Pending",
-          };
-        });
-        setUsers(usersList);
-      };
-      fetchUsers();
-    }, []);
-
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-        if (actionMenuRef.current && !actionMenuRef.current.contains(event.target)) {
-          setActionMenuVisible(null);
-        }
-      };
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, []);
-
-    const handleRowClick = (user) => {
-      setSelectedUser(user);
-      setFormData(user);
-      setIsModalOpen(true);
-    };
-
-    const handleDelete = async (userId) => {
-      if (window.confirm("Are you sure you want to delete this user?")) {
-        const userRef = doc(db, "registeredUsers", userId);
-        await deleteDoc(userRef);
-        setUsers(users.filter(user => user.id !== userId));
-      }
-    };
-
-    const handleSave = async () => {
-      const { name, email, password, userType, identity, contact, registry, research } = formData;
-    
-      //if (!name || !email || !password || !userType || !identity) {
-      //  alert("Please fill in all required fields.");
-      //  return;
-      //}
-    
-      try {
-        const userData = {
-          name,
-          email,
-          password,
-          userType,
-          identity,
-          contact,
-          registry,
-          research,
-          approvedAt: new Date(),
-          status: "Approved"
+  // Fetch users from Firebase
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const usersCollection = collection(db, "registeredUsers");
+      const usersSnapshot = await getDocs(usersCollection);
+      const usersList = usersSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          ...data,
+          approvedAt: data.approvedAt
+            ? format(new Date(data.approvedAt.seconds * 1000), 'MM/dd/yyyy')
+            : "Pending",
         };
-    
-        if (selectedUser) {
-          // Update existing user in Firebase using the document ID as reference
-          await updateDoc(doc(db, "registeredUsers", selectedUser.id), userData);
-          // setUsers(users.map(user => (user.id === selectedUser.id ? { ...user, ...userData } : user)));
-          setUsers(users.map(user => (user.id === selectedUser.id 
-            ? { ...user, ...userData, approvedAt: format(new Date(), 'MM/dd/yyyy') } 
-            : user)));
-        } else {
-          // Add new user to Firebase and use the generated document ID
-          const newUserDoc = doc(collection(db, "registeredUsers"));
-          await setDoc(newUserDoc, userData);
-          setUsers([...users, { id: newUserDoc.id, ...userData, approvedAt: new Date().toLocaleDateString() }]);
-        }
-        alert("User saved successfully!");
-      } catch (error) {
-        console.error("Error saving user:", error);
-        alert("Failed to save user.");
+      });
+      setUsers(usersList);
+    };
+    fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (actionMenuRef.current && !actionMenuRef.current.contains(event.target)) {
+        setActionMenuVisible(null);
       }
-    
-      setIsModalOpen(false);
-      setFormData({ id: '', name: '', email: '', password: '', contact: '', userType: '', registry: false, research: false, approvedAt: '', identity: '' });
     };
-    
-
-    const handleAddNewUser = () => {
-      setSelectedUser(null);
-      setFormData({ id: '', name: '', email: '', password: '', contact: '', userType: '', registry: false, research: false, approvedAt: '', identity: '' });
-      setIsModalOpen(true);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
     };
+  }, []);
 
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData(prevState => ({ ...prevState, [name]: value }));
-    };
+  const handleRowClick = (user) => {
+    setSelectedUser(user);
+    setFormData(user);
+    setIsModalOpen(true);
+  };
 
-    const handleCheckboxChange = (e) => {
-      const { name, checked } = e.target;
-      setFormData(prevState => ({ ...prevState, [name]: checked }));
-    };
+  const handleDelete = async (userId) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      const userRef = doc(db, "registeredUsers", userId);
+      await deleteDoc(userRef);
+      setUsers(users.filter(user => user.id !== userId));
+    }
+  };
 
-    const showActionMenu = (event, userId) => {
-      event.preventDefault();
-      event.stopPropagation();
-      setActionMenuVisible(userId);
-      setActionMenuPosition({ top: event.clientY, left: event.clientX });
-    };
+  const handleSave = async () => {
+    const { name, email, password, userType, identity, contact, registry, research } = formData;
 
-    const filteredUsers = users.filter(user => {
-      const matchesSearch = user.name.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesUserType = userTypeFilter ? user.userType === userTypeFilter : true;
-      const matchesAccessType = accessTypeFilter ? (accessTypeFilter === 'Research' ? user.research : user.registry) : true;
-      return matchesSearch && matchesUserType && matchesAccessType;
-    });
+    try {
+      const userData = {
+        name,
+        email,
+        password,
+        userType,
+        identity,
+        contact,
+        registry,
+        research,
+        approvedAt: new Date(),
+        status: "Approved"
+      };
 
-    return (
-      <div
-  className={styles.page}
-  style={{
-    backgroundImage: "url('/wavelines4.png')",
-    backgroundColor: "white",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed', 
-    minHeight: '100vh',
-    width: '100vw',
-  }}
->
-        <Navbar />
-        <Sidebar />
-        <div className={styles.container}>
-          <h1 className={styles.title}>Manage Users</h1>
+      if (selectedUser) {
+        // Update existing user in Firebase using the document ID as reference
+        await updateDoc(doc(db, "registeredUsers", selectedUser.id), userData);
+        // setUsers(users.map(user => (user.id === selectedUser.id ? { ...user, ...userData } : user)));
+        setUsers(users.map(user => (user.id === selectedUser.id
+          ? { ...user, ...userData, approvedAt: format(new Date(), 'MM/dd/yyyy') }
+          : user)));
+      } else {
+        // Add new user to Firebase and use the generated document ID
+        const newUserDoc = doc(collection(db, "registeredUsers"));
+        await setDoc(newUserDoc, userData);
+        setUsers([...users, { id: newUserDoc.id, ...userData, approvedAt: new Date().toLocaleDateString() }]);
+      }
+      alert("User saved successfully!");
+    } catch (error) {
+      console.error("Error saving user:", error);
+      alert("Failed to save user.");
+    }
 
-          <div className={styles.filters}>
-            <select class value={userTypeFilter} onChange={(e) => setUserTypeFilter(e.target.value)}>
-              <option value="">Filter by User Type</option>
-              <option value="Doctor">Doctor</option>
-              <option value="Nurse">Nurse</option>
-              <option value="Admin">Admin</option>
-            </select>
+    setIsModalOpen(false);
+    setFormData({ id: '', name: '', email: '', password: '', contact: '', userType: '', registry: false, research: false, approvedAt: '', identity: '' });
+  };
 
-            <select value={accessTypeFilter} onChange={(e) => setAccessTypeFilter(e.target.value)}>
-              <option value="">Filter by Access Type</option>
-              <option value="Research">Research</option>
-              <option value="Registry">Registry</option>
-            </select>
 
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
+  const handleAddNewUser = () => {
+    setSelectedUser(null);
+    setFormData({ id: '', name: '', email: '', password: '', contact: '', userType: '', registry: false, research: false, approvedAt: '', identity: '' });
+    setIsModalOpen(true);
+  };
 
-          <div className={styles.tableContainer}>
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: checked }));
+  };
+
+  const showActionMenu = (event, userId) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setActionMenuVisible(userId);
+    setActionMenuPosition({ top: event.clientY, left: event.clientX });
+  };
+
+  const filteredUsers = users.filter(user => {
+    const matchesSearch = user.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesUserType = userTypeFilter ? user.userType === userTypeFilter : true;
+    const matchesAccessType = accessTypeFilter ? (accessTypeFilter === 'Research' ? user.research : user.registry) : true;
+    return matchesSearch && matchesUserType && matchesAccessType;
+  });
+
+  return (
+    <div
+      className={styles.page}
+      style={{
+        backgroundImage: "url('/wavelines4.png')",
+        backgroundColor: "white",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        minHeight: '100vh',
+        width: '100vw',
+      }}
+    >
+      <Navbar />
+      <Sidebar />
+      <div className={styles.container}>
+        <h1 className={styles.title}>Manage Users</h1>
+
+        <div className={styles.filters}>
+          <select class value={userTypeFilter} onChange={(e) => setUserTypeFilter(e.target.value)}>
+            <option value="">Filter by User Type</option>
+            <option value="Doctor">Doctor</option>
+            <option value="Nurse">Nurse</option>
+            <option value="Admin">Admin</option>
+          </select>
+
+          <select value={accessTypeFilter} onChange={(e) => setAccessTypeFilter(e.target.value)}>
+            <option value="">Filter by Access Type</option>
+            <option value="Research">Research</option>
+            <option value="Registry">Registry</option>
+          </select>
+
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        <div className={styles.tableContainer}>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -265,62 +260,66 @@
               ))}
             </tbody>
           </table>
-          </div>
-
-          <button className={styles.addButton} onClick={handleAddNewUser}>Add a New User</button>
-
-          {isModalOpen && (
-            <div className={styles.modal}>
-              <div className={styles.modalContent}>
-                <h2>{selectedUser ? "Edit User Details" : "Add New User"}</h2>
-                <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
-                  <label>Name:</label>
-                  <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
-                  <label>Email:</label>
-                  <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
-                  <label>Password:</label>
-                  <input type="password" name="password" value={formData.password} onChange={handleInputChange} required />
-                  <label>Contact (optional):</label>
-                  <input type="text" name="contact" value={formData.contact} onChange={handleInputChange} />
-                  <label>User Type:</label>
-                  <select
-  name="userType"
-  value={formData.userType}
-  onChange={handleInputChange}
-  required
->
-  <option value="">Select User Type</option>
-  <option value="Doctor">Doctor</option>
-  <option value="Nurse">Nurse</option>
-  <option value="Researcher">Researcher</option>
-  <option value="Admin">Admin</option>
-  
-</select>
-
-                  <label>Registry Access:</label>
-                  <input type="checkbox" name="registry" checked={formData.registry} onChange={handleCheckboxChange} />
-                  <label>Research Access:</label>
-                  <input type="checkbox" name="research" checked={formData.research} onChange={handleCheckboxChange} />
-                  <label>Upload Proof of Identity (URL):</label>
-                  <input
-                    type="url"
-                    name="identity"
-                    value={formData.identity}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Enter a valid link to proof of identity"
-                  />
-                  <div className={styles.modalActions}>
-                    <button type="button" onClick={() => setIsModalOpen(false)}>Cancel</button>
-                    <button type="submit">Save</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
         </div>
-      </div>
-    );
-  }
 
-  export default ManageUsers;
+        <button className={styles.addButton} onClick={handleAddNewUser}>Add a New User</button>
+
+        {isModalOpen && (
+          <div className={styles.modal}>
+            <div className={styles.modalContent}>
+              <h2>{selectedUser ? "Edit User Details" : "Add New User"}</h2>
+              <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
+                <label>Name:</label>
+                <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
+                <label>Email:</label>
+                <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
+                <label>Password:</label>
+                <input type="password" name="password" value={formData.password} onChange={handleInputChange} required />
+                <label>Contact (optional):</label>
+                <input type="text" name="contact" value={formData.contact} onChange={handleInputChange} />
+                <label>User Type:</label>
+                <select
+                  name="userType"
+                  value={formData.userType}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Select User Type</option>
+                  <option value="Doctor">Doctor</option>
+                  <option value="Nurse">Nurse</option>
+                  <option value="Researcher">Researcher</option>
+                  <option value="Admin">Admin</option>
+
+                </select>
+
+                <label>Registry Access:</label>
+                <input type="checkbox" name="registry" checked={formData.registry} onChange={handleCheckboxChange} />
+                <label>Research Access:</label>
+                <input type="checkbox" name="research" checked={formData.research} onChange={handleCheckboxChange} />
+                <label>Upload Proof of Identity (URL):</label>
+                <input
+                  type="url"
+                  name="identity"
+                  value={formData.identity}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Enter a valid link to proof of identity"
+                />
+                <div className={styles.modalActions}>
+                  <button type="button" onClick={() => setIsModalOpen(false)}>Cancel</button>
+                  <button type="submit">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+      {/* End of container div */}
+      </div>
+
+    {/* End of page div */}
+    </div>
+  );
+}
+
+export default ManageUsers;

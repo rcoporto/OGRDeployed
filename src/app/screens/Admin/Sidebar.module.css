@@ -68,7 +68,6 @@
   padding: inherit; /* Ensure padding applies uniformly */
 }
 
-
 /* Active state link */
 .sidebar ul li.active a {
   color: white; /* Ensure text color stays white for active state */

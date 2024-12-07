@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function AdminMainMenu() {
   return (
@@ -6,4 +6,4 @@ function AdminMainMenu() {
   )
 }
 
-export default AdminMainMenu
+export default AdminMainMenu;

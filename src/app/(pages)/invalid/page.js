@@ -1,5 +1,5 @@
-import Invalid from '@/app/screens/Invalid'
-import React from 'react'
+import Invalid from '@/app/screens/Invalid';
+import React from 'react';
 
 function page() {
   return (
@@ -7,4 +7,4 @@ function page() {
   )
 }
 
-export default page
+export default page;

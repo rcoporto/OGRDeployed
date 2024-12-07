@@ -1,5 +1,5 @@
-import ManageUsers from '@/app/screens/Admin/ManageUsers'
-import React from 'react'
+import ManageUsers from '@/app/screens/Admin/ManageUsers';
+import React from 'react';
 
 function page() {
   return (
@@ -7,4 +7,4 @@ function page() {
   )
 }
 
-export default page
+export default page;

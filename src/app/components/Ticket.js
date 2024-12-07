@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Ticket() {
   return (
@@ -6,4 +6,4 @@ function Ticket() {
   )
 }
 
-export default Ticket
+export default Ticket;

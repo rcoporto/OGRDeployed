@@ -1,5 +1,5 @@
-import NewUser from '@/app/screens/NewUser'
-import React from 'react'
+import NewUser from '@/app/screens/NewUser';
+import React from 'react';
 
 function page() {
   return (
@@ -7,4 +7,4 @@ function page() {
   )
 }
 
-export default page
+export default page;

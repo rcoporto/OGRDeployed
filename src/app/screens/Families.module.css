@@ -1,125 +1,36 @@
-   /* .familiesContainer {
-    padding: 20px;
-    font-family: 'Poppins', sans-serif;
-  } */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+  
+.overlayContent {
+  background: #2E4756;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+}
+  
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+  
 
-  .page {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    /* min-height: fit-content; */
-    background-color: #F8F8FF;
-    /* background-image: url('/wavelines3.png');
-    background-position: top;
-    background-size: contain;
-    background-repeat: no-repeat;  */
-  }
-
-  .footer {
-    background-color: #65697B;
-    color: #fff;
-    text-align: center;
-    padding: 0.5rem;
-  }
-  
-  .donateSection, .scheduleSection {
-    margin-bottom: 1rem;
-  }
-  
-  .qrCode {
-    width: 150px;
-    height: 150px;
-  }
-  
-  .filterAddContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .filters select {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    color: steelblue;
-  }
-  
-  .eventTable {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .eventTable th, .eventTable td {
-    padding: 12px;
-    border: 1px solid #ddd;
-  }
-  
-  .eventTable tr:hover {
-    background-color: gray;
-    cursor: pointer;
-  }
-  
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .overlayContent {
-    background: #2E4756;
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
-    position: relative;
-  }
-  
-  .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
-    cursor: pointer;
-  }
-  
-  .addBtn, .submitBtn, .editBtn, .deleteBtn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .addBtn {
-    background-color: green;
-    color: white;
-    float: right; 
-  }
-  
-  .submitBtn {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .editBtn {
-    background-color: orange;
-    color: white;
-  }
-  
-  .deleteBtn {
-    background-color: #dc3545;
-    color: white;
-  }
   

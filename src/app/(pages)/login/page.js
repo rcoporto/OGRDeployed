@@ -1,10 +1,10 @@
-import Login from '@/app/screens/Login'
-import React from 'react'
+import Login from '@/app/screens/Login';
+import React from 'react';
 
 function page() {
   return (
-    <div><Login/> </div>
+    <div><Login/></div>
   )
 }
 
-export default page
+export default page;

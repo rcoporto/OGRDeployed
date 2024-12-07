@@ -1,5 +1,4 @@
 "use client";
-
 import Navbar from '../../components/Navbar';
 import React, { useState, useEffect } from "react";
 import styles from "./CatchBasin.module.css";
@@ -7,7 +6,7 @@ import Sidebar from "./Sidebar";
 import { db } from "../../../../firebase/firebase";
 import { collection, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
 
-// to check for valid access
+// To check for valid access
 import { useAuth } from '../../context/authContext'; // Ensure this is imported correctly
 import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
 
@@ -19,13 +18,13 @@ function CatchBasin() {
   const [tagFilter, setTagFilter] = useState("");
   const [actionMenuVisible, setActionMenuVisible] = useState(null); // State to track visible action menu
 
-  // for login/access checking
+  // For login/access checking
   const user = useAuth(); // Destructure logout directly
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
   const [hasAdminAccess, setHasAdminAccess] = useState(false); // Track research access
   const router = useRouter();
 
-  // check if admin
+  // Check if admin
   useEffect(() => {
     try {
       if (user && user.user.userType === "Admin") {
@@ -66,26 +65,12 @@ function CatchBasin() {
   };
 
   const handleStatusChange = async (ticketId) => {
-
-
     setTickets((prevTickets) =>
       prevTickets.map((ticket) => {
         if (ticket.id === ticketId) {
           const newStatus = ticket.status === "Open" ? "Closed" : "Open";
-          // const confirmMessage =
-          //   newStatus === "Closed"
-          //     ? "Mark as closed? Confirm"
-          //     : "Reopen this ticket? Confirm";
-
-          // if (window.confirm(confirmMessage)) {
-          //   // Update status in Firestore
-          //   const ticketRef = doc(db, "tickets", ticketId);
-          //   updateDoc(ticketRef, { status: newStatus });
-          //   return { ...ticket, status: newStatus };
-          // }
-
-            const ticketRef = doc(db, "tickets", ticketId);
-            updateDoc(ticketRef, { status: newStatus });
+          const ticketRef = doc(db, "tickets", ticketId);
+          updateDoc(ticketRef, { status: newStatus });
           return { ...ticket, status: newStatus };
         }
         return ticket;
@@ -117,79 +102,69 @@ function CatchBasin() {
 
   return (
     <>
+      <div className={styles.page}>
+        <Navbar />
+        <Sidebar />
 
-<div
-  className={styles.page}
-  // style={{
-  //   backgroundImage: "url('/wavelines4.png')",
-  //   backgroundColor: "white",
-  //   backgroundSize: 'cover',
-  //   backgroundPosition: 'center',
-  //   backgroundRepeat: 'no-repeat',
-  //   backgroundAttachment: 'fixed', 
-  //   minHeight: '100vh',
-  //   width: '100vw',
-  // }}
->
-<Navbar />
-    <Sidebar />
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.header}>
-            <h1>Tickets</h1>
-            <div className={styles.filter}>
-              <select className={styles.filterdropdown}
-                value={tagFilter}
-                onChange={(e) => setTagFilter(e.target.value)}
-              >
-                <option value="">Filter by Tag</option>
-                <option value="Donation">Donation</option>
-                <option value="Inquiry">Inquiry</option>
-                <option value="Support">Support</option>
-                <option value="Request">Request</option>
-              </select>
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+        <div className={styles.container}>
+          <div className={styles.content}>
+            <div className={styles.header}>
+              <h1>Tickets</h1>
+              <div className={styles.filter}>
+                <select className={styles.filterdropdown}
+                  value={tagFilter}
+                  onChange={(e) => setTagFilter(e.target.value)}
+                >
+                  <option value="">Filter by Tag</option>
+                  <option value="Donation">Donation</option>
+                  <option value="Inquiry">Inquiry</option>
+                  <option value="Support">Support</option>
+                  <option value="Request">Request</option>
+                </select>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
-          <div className={styles.stats}>
-            <div onClick={() => setFilterStatus("All")}>Total: {tickets.length}</div>
-            <div onClick={() => setFilterStatus("Open")}>Open: {countTickets("Open")}</div>
-            <div onClick={() => setFilterStatus("Closed")}>Closed: {countTickets("Closed")}</div>
-          </div>
-          <div className={styles.tableContainer}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Tag</th>
-                  <th>Submitted by</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Subject</th>
-                  <th>Create Date</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredTickets.map((ticket) => (
-                  // <tr key={ticket.id} onClick={() => handleRowClick(ticket)}>
-                  <tr key={ticket.id} >
-                    <td>{ticket.id}</td>
-                    <td>{ticket.tag}</td>
-                    <td>{ticket.name}</td>
-                    <td>{ticket.email}</td>
-                    <td>{ticket.contact}</td>
-                    <td>{ticket.subject}</td>
-                    <td>{ticket.dateCreated}</td>
-                    <td>{ticket.status}</td>
-                    <td>
-                      
+
+            <div className={styles.stats}>
+              <div onClick={() => setFilterStatus("All")}>Total: {tickets.length}</div>
+              <div onClick={() => setFilterStatus("Open")}>Open: {countTickets("Open")}</div>
+              <div onClick={() => setFilterStatus("Closed")}>Closed: {countTickets("Closed")}</div>
+            </div>
+
+            <div className={styles.tableContainer}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tag</th>
+                    <th>Submitted by</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Subject</th>
+                    <th>Create Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredTickets.map((ticket) => (
+                    // <tr key={ticket.id} onClick={() => handleRowClick(ticket)}>
+                    <tr key={ticket.id} >
+                      <td>{ticket.id}</td>
+                      <td>{ticket.tag}</td>
+                      <td>{ticket.name}</td>
+                      <td>{ticket.email}</td>
+                      <td>{ticket.contact}</td>
+                      <td>{ticket.subject}</td>
+                      <td>{ticket.dateCreated}</td>
+                      <td>{ticket.status}</td>
+                      <td>
+
                         <button className={styles.actionButton} onClick={(e) => { e.stopPropagation(); toggleActionMenu(ticket.id); }}>⋮</button>
                         {actionMenuVisible === ticket.id && (
                           <div className={styles.actionMenu}>
@@ -200,36 +175,40 @@ function CatchBasin() {
                             <button onClick={() => handleRowClick(ticket)}>View Details</button>
                           </div>
                         )}
-                      
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-      </div>
 
-      {selectedTicket && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h2>Ticket Details</h2>
-            <p><strong>ID:</strong> {selectedTicket.id}</p>
-            <p><strong>Tag:</strong> {selectedTicket.tag}</p>
-            <p><strong>Submitted by:</strong> {selectedTicket.submittedBy}</p>
-            <p><strong>Email:</strong> {selectedTicket.email}</p>
-            <p><strong>Phone:</strong> {selectedTicket.phone}</p>
-            <p><strong>Subject:</strong> {selectedTicket.subject}</p>
-            <p><strong>Create Date:</strong> {selectedTicket.createDate}</p>
-            <p><strong>Status:</strong> {selectedTicket.status}</p>
-            <p><strong>Message:</strong> {selectedTicket.message}</p>
-            <button onClick={closeModal}>Close</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+          {/* End of content div */}
           </div>
+
+          {selectedTicket && (
+            <div className={styles.modal}>
+              <div className={styles.modalContent}>
+                <h2>Ticket Details</h2>
+                <p><strong>ID:</strong> {selectedTicket.id}</p>
+                <p><strong>Tag:</strong> {selectedTicket.tag}</p>
+                <p><strong>Submitted by:</strong> {selectedTicket.submittedBy}</p>
+                <p><strong>Email:</strong> {selectedTicket.email}</p>
+                <p><strong>Phone:</strong> {selectedTicket.phone}</p>
+                <p><strong>Subject:</strong> {selectedTicket.subject}</p>
+                <p><strong>Create Date:</strong> {selectedTicket.createDate}</p>
+                <p><strong>Status:</strong> {selectedTicket.status}</p>
+                <p><strong>Message:</strong> {selectedTicket.message}</p>
+                <button onClick={closeModal}>Close</button>
+              </div>
+            </div>
+          )}
+
+        {/* End of container div */}
         </div>
         
-      )}
-    </div>
-   
-    </div>
+      {/* End of page div */}
+      </div>    
     </>
   );
 }
