@@ -81,8 +81,14 @@ const ManageApplications = () => {
     if (filterStatus !== 'All') {
       filtered = filtered.filter(app => app.status === filterStatus);
     }
+    // if (accessFilter !== 'All') {
+    //   filtered = filtered.filter(app => app.accessRequest.includes(accessFilter));
+    // }
     if (accessFilter !== 'All') {
-      filtered = filtered.filter(app => app.accessRequest.includes(accessFilter));
+      if (accessFilter == 'Registry')
+        filtered = filtered.filter(app => app.registry);
+      else if (accessFilter == 'Research')
+        filtered = filtered.filter(app => app.research);
     }
     setFilteredApplications(filtered);
   };
