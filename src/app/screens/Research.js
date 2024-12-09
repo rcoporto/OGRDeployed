@@ -127,7 +127,7 @@ function Research() {
     const frequency = {};
     let maxFreq = 0;
     let mode = null;
-  
+
     arr.forEach((value) => {
       if (value != null) {
         frequency[value] = (frequency[value] || 0) + 1;
@@ -137,10 +137,10 @@ function Research() {
         }
       }
     });
-  
+
     return mode;
   };
-  
+
   const frequentBlurringDuration = getMostFrequentValue(
     filteredData.map((item) => item.durationBlurring)
   );
@@ -150,7 +150,7 @@ function Research() {
   //     alert("No data to download.");
   //     return;
   //   }
-  
+
   //   // Define the specific columns you want to include in the CSV
   //   const columns = [
   //     "registryNumber",
@@ -174,12 +174,12 @@ function Research() {
   //     "retinaLeft",
   //     "geneticTestingDate"
   //   ];
-  
+
   //   const csvRows = [];
-  
+
   //   // Add headers
   //   csvRows.push(columns.join(','));
-  
+
   //   // Add rows with filtered data
   //   for (const row of filteredData) {
   //     const values = columns.map(column => {
@@ -188,7 +188,7 @@ function Research() {
   //     });
   //     csvRows.push(values.join(','));
   //   }
-  
+
   //   // Generate the CSV file
   //   const csvString = csvRows.join('\n');
   //   const blob = new Blob([csvString], { type: 'text/csv' });
@@ -204,7 +204,7 @@ function Research() {
       alert("No data to download.");
       return;
     }
-  
+
     // Define the specific columns you want to include in the CSV
     const columns = [
       "registryNumber",
@@ -228,27 +228,27 @@ function Research() {
       "retinaLeft",
       "geneticTestingDate"
     ];
-  
+
     // Prepare the filters for the CSV content
     const filterDetails = [];
     if (diseaseFilter) filterDetails.push(`Disease: ${diseaseFilter}`);
     if (variantFilter) filterDetails.push(`Variant: ${variantFilter}`);
     if (regionFilter) filterDetails.push(`Region: ${regionFilter}`);
     if (ageRange) filterDetails.push(`Age Range: ${ageRange[0]} - ${ageRange[1]}`);
-  
+
     const csvRows = [];
-  
+
     // Add the filter details as the first row
     if (filterDetails.length > 0) {
       csvRows.push(`Filters applied: ${filterDetails.join(', ')}`);
     }
-  
+
     // Add an empty row to separate filters from the actual data
     csvRows.push('');
-  
+
     // Add headers
     csvRows.push(columns.join(','));
-  
+
     // Add rows with filtered data
     for (const row of filteredData) {
       const values = columns.map(column => {
@@ -256,7 +256,7 @@ function Research() {
       });
       csvRows.push(values.join(','));
     }
-  
+
     // Generate the CSV file
     const csvString = csvRows.join('\n');
     const blob = new Blob([csvString], { type: 'text/csv' });
@@ -266,9 +266,6 @@ function Research() {
     a.setAttribute('download', 'filtered_data.csv');
     a.click();
   };
-  
-  
-  
 
   return (
     <>
@@ -284,17 +281,12 @@ function Research() {
         {/* Container div for entire page content */}
         <div class="flex flex-col">
 
-        <button onClick={downloadCSV} className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-            Download CSV
-          </button>
-
-     
           {/* Container div for age filter, region filter, & reset filter */}
-          <div class="text-justify mb-8 mx-20 grid md:grid-cols-3 gap-6">
+          <div class="text-justify mb-8 mx-20 grid md:grid-cols-4 gap-14">
             <div>
 
               <div class="flex items-center justify-self-center">
-                <label class="block ml-6 mr-2 text-left text-sm text-nowrap font-medium text-bluegreen-90">Age Range</label>
+                <label class="block ml-32 mr-2 text-left text-sm text-nowrap font-medium text-bluegreen-90">Age Range</label>
                 <input
                   type="number"
                   placeholder="Min age"
@@ -318,7 +310,7 @@ function Research() {
 
             <div>
               <div class="flex items-center justify-self-center">
-                <label class="block mr-2 text-left text-sm font-medium text-bluegreen-90">Region</label>
+                <label class="block ml-72 mr-2 text-left text-sm font-medium text-bluegreen-90">Region</label>
                 <select
                   class="block px-2.5 py-2.5 w-max text-sm font-lora text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
                   value={regionFilter}
@@ -347,13 +339,26 @@ function Research() {
             </div>
 
             <div>
-              <div class="flex items-center justify-self-center float-end">
-                <label class="block ml-6 mr-2 text-left text-sm text-nowrap font-medium text-bluegreen-90">Reset Filters</label>
+              <div class="flex items-center justify-self-center">
+                <label class="block ml-96 mr-2 text-left text-sm text-nowrap font-medium text-bluegreen-90">Reset Filters</label>
                 <button type="button" class="text-blue-700 bg-pink-1 hover:bg-pink-10 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-20 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center" onClick={resetFilters}>
                   <svg class="w-4 h-4 text-pink-50" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" strokeLineCap="round" strokeLineJoin="round" strokeWidth="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4" />
                   </svg>
                   <span class="sr-only">Refresh</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-self-center">
+                <label class="block ml-20 mr-2 text-left text-sm text-nowrap font-medium text-bluegreen-90">Download CSV</label>
+                <button type="button" class="text-blue-700 bg-lightbluegreen-10 hover:bg-lightbluegreen-5 hover:text-white focus:ring-4 focus:outline-none focus:ring-bluegreen-1 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center" onClick={downloadCSV}>
+                  <svg class="w-4 h-4 text-bluegreen-80" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clip-rule="evenodd" />
+                    <path fill-rule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="sr-only">Download CSV</span>
                 </button>
               </div>
             </div>
@@ -433,11 +438,11 @@ function Research() {
               <div class="p-4 mx-4 mb-4 bg-gray-50 rounded-lg md:p-8" >
                 <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 sm:p-8">
                   <div class="flex flex-col text-center">
-                      <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">
-                          {frequentBlurringDuration || 'N/A'}
-                      </dt>
-                  <dd class="text-gray-500 font-lora">Frequent duration of illness</dd>
-                </div>
+                    <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">
+                      {frequentBlurringDuration || 'N/A'}
+                    </dt>
+                    <dd class="text-gray-500 font-lora">Frequent duration of illness</dd>
+                  </div>
 
                   <div class="flex flex-col  text-center">
                     <dt class="mb-2 text-2xl text-bluegreen-70 font-extrabold">{averageAge.toFixed(2)}</dt>
