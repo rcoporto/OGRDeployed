@@ -81,9 +81,6 @@ const ManageApplications = () => {
     if (filterStatus !== 'All') {
       filtered = filtered.filter(app => app.status === filterStatus);
     }
-    // if (accessFilter !== 'All') {
-    //   filtered = filtered.filter(app => app.accessRequest.includes(accessFilter));
-    // }
     if (accessFilter !== 'All') {
       if (accessFilter == 'Registry')
         filtered = filtered.filter(app => app.registry);
