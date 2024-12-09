@@ -31,7 +31,7 @@ function Families({ isAdmin }) {
   }, []);
 
   const handleAddEvent = () => {
-    setShowForm({ type: 'add', event: { title: '', date: '', category: '', details: '' } });
+    setShowForm({ type: 'add', event: { title: '', date: '', category: 'Retinitis Pigmentosa', details: '' } });
   };
 
   const handleEditEvent = (event) => {
