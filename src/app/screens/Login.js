@@ -79,7 +79,7 @@ function Login() {
           <div>
             <Image
               src="/oph.png"
-              alt="Wave Lines"
+              alt="Oph"
               height={600}
               width={600}
               className='left-28 z-0'

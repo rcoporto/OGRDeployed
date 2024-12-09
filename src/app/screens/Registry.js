@@ -146,7 +146,7 @@ const Registry = () => {
       alert('There was an error submitting the form.');
     }
   };
-  
+
   return (
     <>
       {/* Container div for entire page */}
@@ -159,458 +159,482 @@ const Registry = () => {
         </div>
 
         {/* Container div for entire form */}
-        <div class="mb-10 mx-28 text-center justify-items-center z-10 grid md:grid-cols-2 gap-2">
+        <div class="mb-10 text-center justify-items-center z-10">
 
-          {/* Container div for form (first column) */}
-          <div class="w-screen max-w-screen-sm p-4 bg-white border justify-self-center border-gray-200 rounded-lg shadow sm:p-8 md:p-12">
-            <form class="space-y-4" action="#" onSubmit={handleSubmit}>
-              <div class="z-10 grid md:grid-cols-2 gap-4">
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Registry Number</label>
-                  <input
-                    type="text"
-                    name="registryNumber"
-                    value={formData.registryNumber}
-                    class="block px-2.5 pb-2.5 pt-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                    readOnly
-                  />
-                </div>
+          <div class="w-fit p-4 bg-white border justify-self-center border-gray-200 rounded-lg shadow sm:p-8 md:p-12">
+            <form class="grid md:grid-cols-2 gap-10 divide-x-2" action="#" onSubmit={handleSubmit}>
 
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Email</label>
-                  <input
-                    type="text"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  />
-                </div>
-              </div>
-
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Demographics</span></h6>
-
-              <div class="relative">
-                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                />
-              </div>
-
-              <div class="relative">
-                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Middle Name</label>
-                <input
-                  type="text"
-                  name="middleName"
-                  value={formData.middleName}
-                  onChange={handleChange}
-                  class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                />
-              </div>
-
-              <div class="relative">
-                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Last Name</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                />
-              </div>
-
-              <div class=" z-10 grid md:grid-cols-3 gap-4">
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Sex</label>
-                  <select
-                    name="sex"
-                    value={formData.sex}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
-                </div>
-
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Birthdate</label>
-                  <input
-                    type="date"
-                    name="birthdate"
-                    value={formData.birthdate}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  />
-                </div>
-
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Age</label>
-                  <input
-                    type="text"
-                    name="age"
-                    value={formData.age}
-                    class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                    readOnly
-                  />
-                </div>
-              </div>
-
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Address</span></h6>
-
-              <div class="relative">
-                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Address</label>
-                <textarea
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  wrap="hard"
-                  rows={2}
-                  cols={50}
-                  class="block px-2.5 pb-2.5 pt-4 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                />
-              </div>
-
-              <div class="relative">
-                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Region</label>
-                <select
-                  name="region"
-                  value={formData.region}
-                  onChange={handleChange}
-                  class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                >
-                  <option value="">Select</option>
-                  <option value="NCR">NCR</option>
-                  <option value="Region I">Region I</option>
-                  <option value="Region II">Region II</option>
-                  <option value="Region III">Region III</option>
-                  <option value="Region IV-A">Region IV-A</option>
-                  <option value="MIMAROPA">MIMAROPA</option>
-                  <option value="Region V">Region V</option>
-                  <option value="Region VI">Region VI</option>
-                  <option value="Region VII">Region VII</option>
-                  <option value="Region VIII">Region VIII</option>
-                  <option value="Region IX">Region IX</option>
-                  <option value="Region X">Region X</option>
-                  <option value="Region XI">Region XI</option>
-                  <option value="Region XII">Region XII</option>
-                  <option value="Region XIII">Region XIII</option>
-                  <option value="Region CAR">CAR</option>
-                  <option value="BARMM">BARMM</option>
-                </select>
-              </div>
-
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Clinical History</span></h6>
-
-              <div class="z-10 grid md:grid-cols-2 gap-4">
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Chief Complaint</label>
-                  <select
-                    name="chiefComplaint"
-                    value={formData.chiefComplaint}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="None">None</option>
-                    <option value="Left">Left Eye</option>
-                    <option value="Right">Right Eye</option>
-                    <option value="Both">Both Eyes</option>
-                  </select>
-                </div>
-
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Duration of Blurring</label>
-                  <select
-                    name="durationBlurring"
-                    value={formData.durationBlurring}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="< 6 months">Less than 6 months</option>
-                    <option value="> 12 months">More than 12 months</option>
-                    <option value="2 years">2 years</option>
-                    <option value="3 years">3 years</option>
-                    <option value="4 years">4 years</option>
-                    <option value="5 years">5 years</option>
-                    <option value="> 10 years">More than 10 years</option>
-                  </select>
-                </div>
-              </div>
-
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Family History</span></h6>
-
-              <div class="relative">
-                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Member of the family with the same disease or history of blindness or blurring of vision</label>
-                <select
-                  name="familyMemberDisease"
-                  value={formData.familyMemberDisease}
-                  onChange={handleChange}
-                  class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                >
-                  <option value="">Select</option>
-                  <option value="Grandfather">Grandfather</option>
-                  <option value="Grandmother">Grandmother</option>
-                  <option value="Father">Father</option>
-                  <option value="Mother">Mother</option>
-                  <option value="Uncle">Uncle</option>
-                  <option value="Aunt">Aunt</option>
-                  <option value="Brother">Brother</option>
-                  <option value="Sister">Sister</option>
-                  <option value="None">None</option>
-                </select>
-              </div>
-
-              <div class="relative">
-                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">How many siblings have the same disease or history of blindness or blurring of vision</label>
-                <select
-                  name="siblingsDiseaseCount"
-                  value={formData.siblingsDiseaseCount}
-                  onChange={handleChange}
-                  class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                >
-                  <option value="">Select</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="None">None</option>
-                </select>
-              </div>
-
-              {/* End of container div for form (first column) */}
-            </form>
-          </div>
-
-          {/* Container div for form (second column) */}
-          <div class="w-screen max-w-screen-sm p-4 bg-white border justify-self-center border-gray-200 rounded-lg shadow sm:p-8 md:p-12">
-            <form class="space-y-4" action="#" onSubmit={handleSubmit}>
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Diagnostics</span></h6>
-
-              <div class="z-10 grid md:grid-cols-2 gap-4">
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">ERG Date</label>
-                  <input
-                    type="date"
-                    name="ergDate"
-                    value={formData.ergDate}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  />
-                </div>
-
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">ERG Result</label>
-                  <input
-                    type="date"
-                    name="ergResult"
-                    value={formData.ergResult}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  />
-                </div>
-              </div>
-
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Diagnosis</span></h6>
-
-              <div class="z-10 grid md:grid-cols-2 gap-4">
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Diagnosis</label>
-                  <select
-                    name="diagnosis"
-                    value={formData.diagnosis}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="Retinitis Pigmentosa">Retinitis Pigmentosa</option>
-                    <option value="Stargardt Disease">Stargardt Disease</option>
-                    <option value="Cone Rod Dystrophy">Cone Rod Dystrophy</option>
-                  </select>
-                </div>
-
-                {Array.isArray(formData.variants) && formData.variants.length > 0 && (
+              {/* Container div for form (first column) */}
+              <div>
+                <div class="z-10 grid md:grid-cols-2 gap-4">
                   <div class="relative">
-                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Variants</label>
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Registry Number</label>
+                    <input
+                      type="text"
+                      name="registryNumber"
+                      value={formData.registryNumber}
+                      class="block px-2.5 pb-2.5 pt-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      readOnly
+                    />
+                  </div>
+
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Email</label>
+                    <input
+                      type="text"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <h6 class="my-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Demographics</span></h6>
+
+                <div class="relative">
+                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">First Name</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    class="block px-2.5 py-2.5 mb-2 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                    required
+                  />
+                </div>
+
+                <div class="relative">
+                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Middle Name</label>
+                  <input
+                    type="text"
+                    name="middleName"
+                    value={formData.middleName}
+                    onChange={handleChange}
+                    class="block px-2.5 py-2.5 mb-2 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                    required
+                  />
+                </div>
+
+                <div class="relative">
+                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Last Name</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    class="block px-2.5 py-2.5 mb-2 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                    required
+                  />
+                </div>
+
+                <div class="z-10 grid md:grid-cols-3 gap-4">
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Sex</label>
                     <select
-                      name="variants"
-                      value={formData.variants}
+                      name="sex"
+                      value={formData.sex}
                       onChange={handleChange}
                       class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
                     >
                       <option value="">Select</option>
-                      {formData.variants.map((variant, index) => (
-                        <option key={index} value={variant}>
-                          {variant}
-                        </option>
-                      ))}
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
                     </select>
                   </div>
-                )}
+
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Birthdate</label>
+                    <input
+                      type="date"
+                      name="birthdate"
+                      value={formData.birthdate}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    />
+                  </div>
+
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Age</label>
+                    <input
+                      type="text"
+                      name="age"
+                      value={formData.age}
+                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      readOnly
+                    />
+                  </div>
+                </div>
+
+                <h6 class="my-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Address</span></h6>
+
+                <div class="relative">
+                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Address</label>
+                  <textarea
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    wrap="hard"
+                    rows={2}
+                    cols={50}
+                    class="block px-2.5 pb-2.5 pt-4 mb-2 w-full font-lora text-sm text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                    required
+                  />
+                </div>
+
+                <div class="relative">
+                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Region</label>
+                  <select
+                    name="region"
+                    value={formData.region}
+                    onChange={handleChange}
+                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                    required
+                  >
+                    <option value="">Select</option>
+                    <option value="NCR">NCR</option>
+                    <option value="Region I">Region I</option>
+                    <option value="Region II">Region II</option>
+                    <option value="Region III">Region III</option>
+                    <option value="Region IV-A">Region IV-A</option>
+                    <option value="MIMAROPA">MIMAROPA</option>
+                    <option value="Region V">Region V</option>
+                    <option value="Region VI">Region VI</option>
+                    <option value="Region VII">Region VII</option>
+                    <option value="Region VIII">Region VIII</option>
+                    <option value="Region IX">Region IX</option>
+                    <option value="Region X">Region X</option>
+                    <option value="Region XI">Region XI</option>
+                    <option value="Region XII">Region XII</option>
+                    <option value="Region XIII">Region XIII</option>
+                    <option value="Region CAR">CAR</option>
+                    <option value="BARMM">BARMM</option>
+                  </select>
+                </div>
+
+                <h6 class="my-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Clinical History</span></h6>
+
+                <div class="z-10 grid md:grid-cols-2 gap-4">
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Chief Complaint</label>
+                    <select
+                      name="chiefComplaint"
+                      value={formData.chiefComplaint}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="None">None</option>
+                      <option value="Left">Left Eye</option>
+                      <option value="Right">Right Eye</option>
+                      <option value="Both">Both Eyes</option>
+                    </select>
+                  </div>
+
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Duration of Blurring</label>
+                    <select
+                      name="durationBlurring"
+                      value={formData.durationBlurring}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="< 6 months">Less than 6 months</option>
+                      <option value="> 12 months">More than 12 months</option>
+                      <option value="2 years">2 years</option>
+                      <option value="3 years">3 years</option>
+                      <option value="4 years">4 years</option>
+                      <option value="5 years">5 years</option>
+                      <option value="> 10 years">More than 10 years</option>
+                    </select>
+                  </div>
+                </div>
+
+                <h6 class="my-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Family History</span></h6>
+
+                <div class="relative">
+                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Member of the family with the same disease or history of blindness or blurring of vision</label>
+                  <select
+                    name="familyMemberDisease"
+                    value={formData.familyMemberDisease}
+                    onChange={handleChange}
+                    class="block px-2.5 py-2.5 mb-2 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                    required
+                  >
+                    <option value="">Select</option>
+                    <option value="Grandfather">Grandfather</option>
+                    <option value="Grandmother">Grandmother</option>
+                    <option value="Father">Father</option>
+                    <option value="Mother">Mother</option>
+                    <option value="Uncle">Uncle</option>
+                    <option value="Aunt">Aunt</option>
+                    <option value="Brother">Brother</option>
+                    <option value="Sister">Sister</option>
+                    <option value="None">None</option>
+                  </select>
+                </div>
+
+                <div class="relative">
+                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">How many siblings have the same disease or history of blindness or blurring of vision</label>
+                  <select
+                    name="siblingsDiseaseCount"
+                    value={formData.siblingsDiseaseCount}
+                    onChange={handleChange}
+                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                    required
+                  >
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="None">None</option>
+                  </select>
+                </div>
+
+                {/* End of container div for form (first column) */}
               </div>
 
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Best Corrected Visual Acuity</span></h6>
 
-              <div class="z-10 grid md:grid-cols-2 gap-4">
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Right Eye</label>
-                  <select
-                    name="rightEye"
-                    value={formData.rightEye}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="1.0">1.0</option>
-                    <option value="0.9">0.9</option>
-                    <option value="0.8">0.8</option>
-                    <option value="0.7">0.7</option>
-                    <option value="0.6">0.6</option>
-                    <option value="0.5">0.5</option>
-                    <option value="0.4">0.4</option>
-                    <option value="0.3">0.3</option>
-                    <option value="0.2">0.2</option>
-                    <option value="0.1">0.1</option>
-                    <option value="Counting Fingers">Counting Fingers</option>
-                    <option value="Hand Movement">Hand Movement</option>
-                  </select>
+              {/* Container div for form (second column) */}
+              <div class="pl-8">
+                <h6 class="mb-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Diagnostics</span></h6>
+
+                <div class="z-10 grid md:grid-cols-2 gap-4">
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">ERG Date</label>
+                    <input
+                      type="date"
+                      name="ergDate"
+                      value={formData.ergDate}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    />
+                  </div>
+
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">ERG Result</label>
+                    <input
+                      type="date"
+                      name="ergResult"
+                      value={formData.ergResult}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    />
+                  </div>
                 </div>
 
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Left Eye</label>
-                  <select
-                    name="leftEye"
-                    value={formData.leftEye}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="1.0">1.0</option>
-                    <option value="0.9">0.9</option>
-                    <option value="0.8">0.8</option>
-                    <option value="0.7">0.7</option>
-                    <option value="0.6">0.6</option>
-                    <option value="0.5">0.5</option>
-                    <option value="0.4">0.4</option>
-                    <option value="0.3">0.3</option>
-                    <option value="0.2">0.2</option>
-                    <option value="0.1">0.1</option>
-                    <option value="Counting Fingers">Counting Fingers</option>
-                    <option value="Hand Movement">Hand Movement</option>
-                  </select>
-                </div>
-              </div>
+                <h6 class="my-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Diagnosis</span></h6>
 
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Cornea</span></h6>
+                <div class="z-10 grid md:grid-cols-2 gap-4">
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Diagnosis</label>
+                    <select
+                      name="diagnosis"
+                      value={formData.diagnosis}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="Retinitis Pigmentosa">Retinitis Pigmentosa</option>
+                      <option value="Stargardt Disease">Stargardt Disease</option>
+                      <option value="Cone Rod Dystrophy">Cone Rod Dystrophy</option>
+                    </select>
+                  </div>
 
-              <div class="z-10 grid md:grid-cols-2 gap-4">
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Right Eye</label>
-                  <select
-                    name="corneaRight"
-                    value={formData.corneaRight}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="Clear">Clear</option>
-                    <option value="Mild Opacity">Mild Opacity</option>
-                    <option value="Moderate Opacity">Moderate Opacity</option>
-                    <option value="Severe Opacity">Severe Opacity</option>
-                  </select>
+                  {Array.isArray(formData.variants) && formData.variants.length > 0 && (
+                    <div class="relative">
+                      <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Variants</label>
+                      <select
+                        name="variants"
+                        value={formData.variants}
+                        onChange={handleChange}
+                        class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                        required
+                      >
+                        <option value="">Select</option>
+                        {formData.variants.map((variant, index) => (
+                          <option key={index} value={variant}>
+                            {variant}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
                 </div>
 
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Left Eye</label>
-                  <select
-                    name="corneaLeft"
-                    value={formData.corneaLeft}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="Clear">Clear</option>
-                    <option value="Mild Opacity">Mild Opacity</option>
-                    <option value="Moderate Opacity">Moderate Opacity</option>
-                    <option value="Severe Opacity">Severe Opacity</option>
-                  </select>
+                <h6 class="my-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Best Corrected Visual Acuity</span></h6>
+
+                <div class="z-10 grid md:grid-cols-2 gap-4">
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Right Eye</label>
+                    <select
+                      name="rightEye"
+                      value={formData.rightEye}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="1.0">1.0</option>
+                      <option value="0.9">0.9</option>
+                      <option value="0.8">0.8</option>
+                      <option value="0.7">0.7</option>
+                      <option value="0.6">0.6</option>
+                      <option value="0.5">0.5</option>
+                      <option value="0.4">0.4</option>
+                      <option value="0.3">0.3</option>
+                      <option value="0.2">0.2</option>
+                      <option value="0.1">0.1</option>
+                      <option value="Counting Fingers">Counting Fingers</option>
+                      <option value="Hand Movement">Hand Movement</option>
+                    </select>
+                  </div>
+
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Left Eye</label>
+                    <select
+                      name="leftEye"
+                      value={formData.leftEye}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="1.0">1.0</option>
+                      <option value="0.9">0.9</option>
+                      <option value="0.8">0.8</option>
+                      <option value="0.7">0.7</option>
+                      <option value="0.6">0.6</option>
+                      <option value="0.5">0.5</option>
+                      <option value="0.4">0.4</option>
+                      <option value="0.3">0.3</option>
+                      <option value="0.2">0.2</option>
+                      <option value="0.1">0.1</option>
+                      <option value="Counting Fingers">Counting Fingers</option>
+                      <option value="Hand Movement">Hand Movement</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Retina</span></h6>
+                <h6 class="my-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Cornea</span></h6>
 
-              <div class="z-10 grid md:grid-cols-2 gap-4">
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Right Eye</label>
-                  <select
-                    name="retinaRight"
-                    value={formData.retinaRight}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="Normal">Normal</option>
-                    <option value="RPE Degeneration">RPE Degeneration</option>
-                    <option value="Choroidal Degeneration">Choroidal Degeneration</option>
-                    <option value="RPE and Choroidal Degeneration">RPE and Choroidal Degeneration</option>
-                  </select>
+                <div class="z-10 grid md:grid-cols-2 gap-4">
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Right Eye</label>
+                    <select
+                      name="corneaRight"
+                      value={formData.corneaRight}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="Clear">Clear</option>
+                      <option value="Mild Opacity">Mild Opacity</option>
+                      <option value="Moderate Opacity">Moderate Opacity</option>
+                      <option value="Severe Opacity">Severe Opacity</option>
+                    </select>
+                  </div>
+
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Left Eye</label>
+                    <select
+                      name="corneaLeft"
+                      value={formData.corneaLeft}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="Clear">Clear</option>
+                      <option value="Mild Opacity">Mild Opacity</option>
+                      <option value="Moderate Opacity">Moderate Opacity</option>
+                      <option value="Severe Opacity">Severe Opacity</option>
+                    </select>
+                  </div>
                 </div>
 
-                <div class="relative">
-                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Left Eye</label>
-                  <select
-                    name="retinaLeft"
-                    value={formData.retinaLeft}
-                    onChange={handleChange}
-                    class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                  >
-                    <option value="">Select</option>
-                    <option value="Normal">Normal</option>
-                    <option value="RPE Degeneration">RPE Degeneration</option>
-                    <option value="Choroidal Degeneration">Choroidal Degeneration</option>
-                    <option value="RPE and Choroidal Degeneration">RPE and Choroidal Degeneration</option>
-                  </select>
+                <h6 class="my-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Retina</span></h6>
+
+                <div class="z-10 grid md:grid-cols-2 gap-4">
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Right Eye</label>
+                    <select
+                      name="retinaRight"
+                      value={formData.retinaRight}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="Normal">Normal</option>
+                      <option value="RPE Degeneration">RPE Degeneration</option>
+                      <option value="Choroidal Degeneration">Choroidal Degeneration</option>
+                      <option value="RPE and Choroidal Degeneration">RPE and Choroidal Degeneration</option>
+                    </select>
+                  </div>
+
+                  <div class="relative">
+                    <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Left Eye</label>
+                    <select
+                      name="retinaLeft"
+                      value={formData.retinaLeft}
+                      onChange={handleChange}
+                      class="block px-2.5 py-2.5 w-full text-sm font-lora text-bluegreen-90 bg-transparent rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="Normal">Normal</option>
+                      <option value="RPE Degeneration">RPE Degeneration</option>
+                      <option value="Choroidal Degeneration">Choroidal Degeneration</option>
+                      <option value="RPE and Choroidal Degeneration">RPE and Choroidal Degeneration</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <h6 class="m-4 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Genetic Testing</span></h6>
+                <h6 class="my-6 text-lg font-extrabold text-gray-900 md:text-xl lg:text-2xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-bluegreen-60 from-bluegreen-75">Genetic Testing</span></h6>
 
-              <div class="relative">
-                <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Date Performed</label>
-                <input
-                  type="date"
-                  name="geneticTestingDate"
-                  value={formData.geneticTestingDate}
-                  onChange={handleChange}
-                  class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
-                />
+                <div class="relative">
+                  <label class="block mb-2 text-left text-sm font-medium text-bluegreen-90">Date Performed</label>
+                  <input
+                    type="date"
+                    name="geneticTestingDate"
+                    value={formData.geneticTestingDate}
+                    onChange={handleChange}
+                    class="block px-2.5 py-2.5 w-full font-lora text-sm text-bluegreen-90 bg-[#EEEEEE] rounded-lg border-1 border-gray-20 appearance-none focus:outline-none focus:ring-0 focus:border-bluegreen-70 peer"
+                    required
+                  />
+                </div>
+
+                {/* <Image
+                  src="/ophtha.png"
+                  alt="Ophthalmologist"
+                  height={450}
+                  width={450}
+                  className='z-10 mt-12 justify-self-center'
+                /> */}
+
+                <div class="mt-20 text-center z-10">
+                  <button type="submit" class="text-white bg-pink-20 hover:bg-pink-50 focus:ring-4 focus:ring-pink-1 font-medium rounded-lg text-lg px-8 py-4 text-center justify-items-center w-max">Submit</button>
+                </div>
+
+                {/* End of container div for form (second column) */}
               </div>
             </form>
-
-            <Image
-              src="/ophtha.png"
-              alt="Ophthalmologist"
-              height={600}
-              width={600}
-              className='z-10 mt-12'
-            />
-
-            {/* End of container div for form (second column) */}
           </div>
+
           {/* End of container div for entire form */}
         </div>
-
-        <form class="space-y-4" onSubmit={handleSubmit}>
-          <div class="my-12 mx-20 text-center z-10">
-            <button type="submit" class="text-white bg-pink-20 hover:bg-pink-50 focus:ring-4 focus:ring-pink-1 font-medium rounded-lg text-lg px-10 py-5 text-center justify-items-center w-max">Submit</button>
-          </div>
-        </form>
 
         {/* End of container div for entire page */}
       </div>
