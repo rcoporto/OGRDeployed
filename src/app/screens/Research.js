@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar';
 import 'flowbite';
 import { initFlowbite } from 'flowbite';
 
+
+
 //to check for valid access
 // import { useAuth } from '../context/authContext'; // Ensure this is imported correctly
 // import { useRouter } from 'next/navigation'; // or 'react-router-dom' if using that
@@ -143,6 +145,129 @@ function Research() {
     filteredData.map((item) => item.durationBlurring)
   );
 
+  // const downloadCSV = () => {
+  //   if (!filteredData || filteredData.length === 0) {
+  //     alert("No data to download.");
+  //     return;
+  //   }
+  
+  //   // Define the specific columns you want to include in the CSV
+  //   const columns = [
+  //     "registryNumber",
+  //     "sex",
+  //     "birthdate",
+  //     "age",
+  //     "region",
+  //     "chiefComplaint",
+  //     "durationBlurring",
+  //     "familyMemberDisease",
+  //     "siblingsDiseaseCount",
+  //     "ergDate",
+  //     "ergResult",
+  //     "diagnosis",
+  //     "variants",
+  //     "rightEye",
+  //     "leftEye",
+  //     "corneaRight",
+  //     "corneaLeft",
+  //     "retinaRight",
+  //     "retinaLeft",
+  //     "geneticTestingDate"
+  //   ];
+  
+  //   const csvRows = [];
+  
+  //   // Add headers
+  //   csvRows.push(columns.join(','));
+  
+  //   // Add rows with filtered data
+  //   for (const row of filteredData) {
+  //     const values = columns.map(column => {
+  //       // Use the column name to get the value from the row
+  //       return `"${String(row[column] || '').replace(/"/g, '""')}"`; // Escape double quotes
+  //     });
+  //     csvRows.push(values.join(','));
+  //   }
+  
+  //   // Generate the CSV file
+  //   const csvString = csvRows.join('\n');
+  //   const blob = new Blob([csvString], { type: 'text/csv' });
+  //   const url = URL.createObjectURL(blob);
+  //   const a = document.createElement('a');
+  //   a.setAttribute('href', url);
+  //   a.setAttribute('download', 'filtered_data.csv');
+  //   a.click();
+  // };
+
+  const downloadCSV = () => {
+    if (!filteredData || filteredData.length === 0) {
+      alert("No data to download.");
+      return;
+    }
+  
+    // Define the specific columns you want to include in the CSV
+    const columns = [
+      "registryNumber",
+      "sex",
+      "birthdate",
+      "age",
+      "region",
+      "chiefComplaint",
+      "durationBlurring",
+      "familyMemberDisease",
+      "siblingsDiseaseCount",
+      "ergDate",
+      "ergResult",
+      "diagnosis",
+      "variants",
+      "rightEye",
+      "leftEye",
+      "corneaRight",
+      "corneaLeft",
+      "retinaRight",
+      "retinaLeft",
+      "geneticTestingDate"
+    ];
+  
+    // Prepare the filters for the CSV content
+    const filterDetails = [];
+    if (diseaseFilter) filterDetails.push(`Disease: ${diseaseFilter}`);
+    if (variantFilter) filterDetails.push(`Variant: ${variantFilter}`);
+    if (regionFilter) filterDetails.push(`Region: ${regionFilter}`);
+    if (ageRange) filterDetails.push(`Age Range: ${ageRange[0]} - ${ageRange[1]}`);
+  
+    const csvRows = [];
+  
+    // Add the filter details as the first row
+    if (filterDetails.length > 0) {
+      csvRows.push(`Filters applied: ${filterDetails.join(', ')}`);
+    }
+  
+    // Add an empty row to separate filters from the actual data
+    csvRows.push('');
+  
+    // Add headers
+    csvRows.push(columns.join(','));
+  
+    // Add rows with filtered data
+    for (const row of filteredData) {
+      const values = columns.map(column => {
+        return `"${String(row[column] || '').replace(/"/g, '""')}"`; // Escape double quotes
+      });
+      csvRows.push(values.join(','));
+    }
+  
+    // Generate the CSV file
+    const csvString = csvRows.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'filtered_data.csv');
+    a.click();
+  };
+  
+  
   
 
   return (
@@ -159,9 +284,15 @@ function Research() {
         {/* Container div for entire page content */}
         <div class="flex flex-col">
 
+        <button onClick={downloadCSV} className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+            Download CSV
+          </button>
+
+     
           {/* Container div for age filter, region filter, & reset filter */}
           <div class="text-justify mb-8 mx-20 grid md:grid-cols-3 gap-6">
             <div>
+
               <div class="flex items-center justify-self-center">
                 <label class="block ml-6 mr-2 text-left text-sm text-nowrap font-medium text-bluegreen-90">Age Range</label>
                 <input
