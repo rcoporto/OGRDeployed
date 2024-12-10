@@ -175,7 +175,22 @@ function Research() {
   //     "geneticTestingDate"
   //   ];
 
+  //   // Prepare the filters for the CSV content
+  //   const filterDetails = [];
+  //   if (diseaseFilter) filterDetails.push(`Disease: ${diseaseFilter}`);
+  //   if (variantFilter) filterDetails.push(`Variant: ${variantFilter}`);
+  //   if (regionFilter) filterDetails.push(`Region: ${regionFilter}`);
+  //   if (ageRange) filterDetails.push(`Age Range: ${ageRange[0]} - ${ageRange[1]}`);
+
   //   const csvRows = [];
+
+  //   // Add the filter details as the first row
+  //   if (filterDetails.length > 0) {
+  //     csvRows.push(`Filters applied: ${filterDetails.join(', ')}`);
+  //   }
+
+  //   // Add an empty row to separate filters from the actual data
+  //   csvRows.push('');
 
   //   // Add headers
   //   csvRows.push(columns.join(','));
@@ -183,7 +198,6 @@ function Research() {
   //   // Add rows with filtered data
   //   for (const row of filteredData) {
   //     const values = columns.map(column => {
-  //       // Use the column name to get the value from the row
   //       return `"${String(row[column] || '').replace(/"/g, '""')}"`; // Escape double quotes
   //     });
   //     csvRows.push(values.join(','));
@@ -204,7 +218,7 @@ function Research() {
       alert("No data to download.");
       return;
     }
-
+  
     // Define the specific columns you want to include in the CSV
     const columns = [
       "registryNumber",
@@ -228,27 +242,74 @@ function Research() {
       "retinaLeft",
       "geneticTestingDate"
     ];
-
+  
     // Prepare the filters for the CSV content
     const filterDetails = [];
     if (diseaseFilter) filterDetails.push(`Disease: ${diseaseFilter}`);
     if (variantFilter) filterDetails.push(`Variant: ${variantFilter}`);
     if (regionFilter) filterDetails.push(`Region: ${regionFilter}`);
     if (ageRange) filterDetails.push(`Age Range: ${ageRange[0]} - ${ageRange[1]}`);
-
+  
+    // Calculate statistics
+    const averageAge =
+      filteredData.reduce((sum, item) => sum + item.age, 0) / filteredData.length || 0;
+  
+    const averageVision =
+      filteredData.reduce((sum, item) => sum + parseFloat(item.rightEye || 0), 0) / filteredData.length || 0;
+  
+    const cornealOpacityCount = filteredData.filter(
+      item => (item.corneaLeft?.includes('Opacity') || item.corneaRight?.includes('Opacity'))
+    ).length;
+  
+    const retinaChangeCount = filteredData.filter(
+      item => item.retinaRight !== 'Normal' || item.retinaLeft !== 'Normal'
+    ).length;
+  
+    const totalCount = filteredData.length;
+  
+    const getMostFrequentValue = (arr) => {
+      const frequency = {};
+      let maxFreq = 0;
+      let mode = null;
+  
+      arr.forEach((value) => {
+        if (value != null) {
+          frequency[value] = (frequency[value] || 0) + 1;
+          if (frequency[value] > maxFreq) {
+            maxFreq = frequency[value];
+            mode = value;
+          }
+        }
+      });
+  
+      return mode;
+    };
+  
+    const frequentBlurringDuration = getMostFrequentValue(
+      filteredData.map((item) => item.durationBlurring)
+    );
+  
     const csvRows = [];
-
-    // Add the filter details as the first row
+  
+    // Add filter details
     if (filterDetails.length > 0) {
       csvRows.push(`Filters applied: ${filterDetails.join(', ')}`);
     }
-
-    // Add an empty row to separate filters from the actual data
+  
+    // Add statistics
+    csvRows.push(`Total Records: ${totalCount}`);
+    csvRows.push(`Average Age: ${averageAge.toFixed(2)}`);
+    csvRows.push(`Average Right Eye Vision: ${averageVision.toFixed(2)}`);
+    csvRows.push(`Corneal Opacity Count: ${cornealOpacityCount}`);
+    csvRows.push(`Retina Change Count: ${retinaChangeCount}`);
+    csvRows.push(`Most Frequent Duration of Blurring: ${frequentBlurringDuration || 'N/A'}`);
+    
+    // Add an empty row for separation
     csvRows.push('');
-
+  
     // Add headers
     csvRows.push(columns.join(','));
-
+  
     // Add rows with filtered data
     for (const row of filteredData) {
       const values = columns.map(column => {
@@ -256,7 +317,7 @@ function Research() {
       });
       csvRows.push(values.join(','));
     }
-
+  
     // Generate the CSV file
     const csvString = csvRows.join('\n');
     const blob = new Blob([csvString], { type: 'text/csv' });
@@ -266,6 +327,7 @@ function Research() {
     a.setAttribute('download', 'filtered_data.csv');
     a.click();
   };
+
 
   return (
     <>
